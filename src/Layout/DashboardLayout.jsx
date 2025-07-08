@@ -22,9 +22,7 @@ const DashboardLayout = () => {
 
   return (
     <>
-    
       {/*  <!-- Component: Side navigation menu with user profile and user contacts --> */}
-
 
       {/*  <!-- Mobile trigger --> */}
       <button
@@ -98,7 +96,7 @@ const DashboardLayout = () => {
           className="flex-1 divide-y divide-slate-100 overflow-auto"
         >
           <div>
-            <DashboardNavLinks/>
+            <DashboardNavLinks />
           </div>
         </nav>
 
@@ -115,11 +113,10 @@ const DashboardLayout = () => {
         </footer>
       </aside>
 
-          <div className="lg:ml-72 p-4 max-w-2xl mx-auto">
-      <Outlet />
-    </div>
+      <div className="lg:ml-72 p-4 max-w-7xl mx-auto min-h-screen">
+        <Outlet />
+      </div>
 
-    
       {/*  <!-- Backdrop --> */}
       <div
         className={`fixed top-0 bottom-0 left-0 right-0 z-30 bg-slate-900/20 transition-colors sm:hidden ${
