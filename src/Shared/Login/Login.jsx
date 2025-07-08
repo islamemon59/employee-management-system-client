@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import SocialLoginButton from "../../Components/SocialLoginButton/SocialLoginButton";
 import useAuth from "../../Hooks/useAuth";
-import { useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 
 const Login = () => {
   const { signInUser } = useAuth();
@@ -30,7 +30,7 @@ const Login = () => {
 
   return (
     <div className="max-w-md mx-auto mt-20 p-6 border border-gray-300 rounded-lg shadow">
-      <h2 className="text-2xl font-semibold mb-4 text-center">Login</h2>
+      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">Login now</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
@@ -66,6 +66,7 @@ const Login = () => {
           Login
         </button>
       </form>
+        <Link to="/register" className="font-semibold text-sm mt-1">Don't have an account <span className="text-indigo-700 hover:border-b-1 cursor-pointer">Register</span></Link>
 
       <SocialLoginButton
       ></SocialLoginButton>
