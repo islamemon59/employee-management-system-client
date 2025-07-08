@@ -113,7 +113,7 @@ const DashboardLayout = () => {
         </footer>
       </aside>
 
-      <div className="lg:ml-72 p-4 max-w-7xl mx-auto min-h-screen">
+      <div className="lg:mr-47 p-4 max-w-7xl mx-auto">
         <Outlet />
       </div>
 
