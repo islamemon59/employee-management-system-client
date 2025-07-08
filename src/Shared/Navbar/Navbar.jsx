@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NavbarLinks from "../../Components/NavbarLinks/NavbarLinks";
 import useAuth from "../../Hooks/useAuth";
+import { Link } from "react-router";
 
 const Navbar = () => {
   const [isToggleOpen, setIsToggleOpen] = useState(false);
@@ -185,10 +186,10 @@ const Navbar = () => {
                     role="button"
                     className="btn btn-ghost btn-circle avatar"
                   >
-                    <div className="w-10 rounded-full">
+                    <div className="w-10 border-2 border-emerald-500 rounded-full">
                       <img
                         alt="Tailwind CSS Navbar component"
-                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                        src={user?.photoURL}
                       />
                     </div>
                   </div>
@@ -206,13 +207,13 @@ const Navbar = () => {
                 </div>
               ) : (
                 <>
-                  {" "}
-                  <button className="inline-flex h-8 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded bg-emerald-50 px-3 text-sm font-medium tracking-wide text-emerald-500 transition duration-300 hover:bg-emerald-100 hover:text-emerald-600 focus:bg-emerald-200 focus:text-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-100 disabled:text-emerald-400 disabled:shadow-none">
+
+                  <Link to="/register" className="inline-flex h-8 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded bg-emerald-50 px-3 text-sm font-medium tracking-wide text-emerald-500 transition duration-300 hover:bg-emerald-100 hover:text-emerald-600 focus:bg-emerald-200 focus:text-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-100 disabled:text-emerald-400 disabled:shadow-none">
                     <span>SignUp</span>
-                  </button>
-                  <button className="inline-flex items-center justify-center h-8 gap-2 px-3 text-sm font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
+                  </Link>
+                  <Link to="/login" className="inline-flex items-center justify-center h-8 gap-2 px-3 text-sm font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
                     <span>SignIn</span>
-                  </button>
+                  </Link>
                 </>
               )}
             </div>
