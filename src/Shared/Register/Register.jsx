@@ -5,6 +5,8 @@ import SocialLoginButton from "../../Components/SocialLoginButton/SocialLoginBut
 import { uploadImage } from "../../Api/ImageUploadApi";
 import { postEmployeeData } from "../../Api/PostEmployeeData";
 import useAuth from "../../Hooks/useAuth";
+import { Link } from "react-router";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const {
@@ -21,7 +23,7 @@ const Register = () => {
     const image = await uploadImage(data?.photo[0]);
 
     createUser(data?.email, data?.password)
-      .then(async (res) => {
+      .then(async () => {
         const employeeData = {
           bank_account_no: data.bank_account_no,
           designation: data.designation,
@@ -39,10 +41,9 @@ const Register = () => {
         console.log(employeeData);
         const result = await postEmployeeData(employeeData);
         console.log(result);
-        console.log(res);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error?.message);
       });
   };
 
@@ -199,6 +200,12 @@ const Register = () => {
           Register
         </button>
       </form>
+      <Link to="/login" className="font-semibold text-sm mt-1">
+        Already have an account{" "}
+        <span className="text-indigo-700 hover:border-b-1 cursor-pointer">
+          Login
+        </span>
+      </Link>
 
       <div className="mt-6 text-center">
         <SocialLoginButton />
