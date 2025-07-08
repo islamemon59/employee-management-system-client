@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home/Home";
 import Register from "../Shared/Register/Register";
 import Login from "../Shared/Login/Login";
 import DashboardLayout from "../Layout/DashboardLayout";
+import WorkSheet from "../Pages/Dashboard/WorkSheet/WorkSheet";
 
 export const router = createBrowserRouter([
   {
@@ -27,5 +28,11 @@ export const router = createBrowserRouter([
   {
     path: "dashboard",
     element: <DashboardLayout />,
+    children: [
+      {
+        path: "/dashboard/workSheet",
+        Component: WorkSheet
+      }
+    ]
   },
 ]);
