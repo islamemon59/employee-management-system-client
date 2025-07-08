@@ -8,9 +8,8 @@ const Banner = ({ slides }) => {
   return (
     <div>
       <Swiper
-        pagination={{ clickable: true }}
         autoplay={{ delay: 3000 }}
-        modules={[Pagination, Autoplay]}
+        modules={[Autoplay]}
         loop={true}
         className=" overflow-hidden shadow h-400px md:h-[600px] py-10"
       >
