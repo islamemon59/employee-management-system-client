@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,11 +10,23 @@ import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../Shared/Loader/Loader";
 
 const WorkSheet = () => {
+  const [updateItem, setUpdateItem] = useState({});
   const { register, handleSubmit, reset } = useForm();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const [name, setName] = useState(""); // hours
+  const [editDate, setEditDate] = useState(new Date()); // separate state for edit date
 
+  // When updateItem changes, set name & date
+  useEffect(() => {
+    if (updateItem) {
+      setName(updateItem.hours || "");
+      setEditDate(updateItem.date ? new Date(updateItem.date) : new Date());
+    }
+  }, [updateItem]);
+
+  // POST new data
   const onSubmit = async (data) => {
     const newEntry = {
       ...data,
@@ -24,16 +36,19 @@ const WorkSheet = () => {
     };
 
     try {
-      const { data } = await axiosSecure.post("employee-work-data", newEntry);
-      console.log(data);
+      const res = await axiosSecure.post("employee-work-data", newEntry);
+      console.log(res.data);
       toast.success("Data added successfully");
+      refetch();
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      toast.error("Failed to add data");
     }
     reset();
     setSelectedDate(new Date());
   };
 
+  // GET data
   const {
     data: workData = [],
     isLoading,
@@ -49,29 +64,57 @@ const WorkSheet = () => {
     },
   });
 
-  console.log(workData);
-  console.log(user?.email);
-
+  // Handle edit click
   const handleEdit = (item) => {
-    console.log(item);
+    setUpdateItem(item);
+    setEditDate(new Date(item.date));
+    document.getElementById("my_modal_1").showModal();
   };
 
+  // PUT update
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      const updatedData = {
+        name: user?.displayName,
+        email: user?.email,
+        task: updateItem.task,
+        hours: name,
+        date: editDate.toDateString(),
+      };
+      console.log(updatedData);
+      const res = await axiosSecure.put(
+        `employee-work-data/${updateItem._id}`,
+        updatedData
+      );
+      console.log(res.data);
+      toast.success("Updated successfully!");
+      refetch();
+      document.getElementById("my_modal_1").close();
+    } catch (error) {
+      console.error(error);
+      toast.error("Update failed");
+    }
+  };
+
+  // DELETE
   const handleDelete = async (id) => {
-    console.log(id);
-    const {data} = await axiosSecure.delete(`employee-work-data/${id}`)
-    refetch()
-    console.log(data);
-    toast.success("Deleted Successfully")
+    try {
+      await axiosSecure.delete(`employee-work-data/${id}`);
+      toast.success("Deleted successfully");
+      refetch();
+    } catch (error) {
+      console.error(error);
+      toast.error("Delete failed");
+    }
   };
 
   if (isLoading || loading) return <Loader />;
 
-  refetch();
-
   return (
     <div className="p-4 space-y-6 max-w-7xl mx-auto">
       {/* Form */}
-      <div className="w-full mx-auto flex justify-center items-center">
+      <div className="flex justify-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col md:flex-row items-center gap-2"
@@ -110,22 +153,15 @@ const WorkSheet = () => {
         </form>
       </div>
 
+      {/* Table */}
       <div className="overflow-x-auto rounded shadow">
         <table className="min-w-full text-left text-black border border-collapse rounded sm:border-separate border-slate-200">
           <thead className="bg-gray-50 uppercase font-semibold text-gray-700">
             <tr>
-              <th className="px-4 py-2 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
-                Task
-              </th>
-              <th className="px-4 py-2 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
-                Hours
-              </th>
-              <th className="px-4 py-2 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
-                Date
-              </th>
-              <th className="px-4 py-2 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
-                Action
-              </th>
+              <th className="px-4 py-2">Task</th>
+              <th className="px-4 py-2">Hours</th>
+              <th className="px-4 py-2">Date</th>
+              <th className="px-4 py-2">Action</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
@@ -138,16 +174,10 @@ const WorkSheet = () => {
             ) : (
               workData.map((item) => (
                 <tr key={item._id} className="hover:bg-gray-50">
-                  <td className="px-4 py-2 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
-                    {item.task}
-                  </td>
-                  <td className="px-4 py-2 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
-                    {item.hours} Hours
-                  </td>
-                  <td className="px-4 py-2 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
-                    {item.date}
-                  </td>
-                  <td className="px-4 py-2 flex justify-around items-center gap-4 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                  <td className="px-4 py-2">{item.task}</td>
+                  <td className="px-4 py-2">{item.hours} Hours</td>
+                  <td className="px-4 py-2">{item.date}</td>
+                  <td className="px-4 py-2 flex gap-3">
                     <button
                       onClick={() => handleEdit(item)}
                       className="text-blue-500 hover:text-blue-700"
@@ -167,6 +197,60 @@ const WorkSheet = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Modal */}
+      <dialog id="my_modal_1" className="modal">
+        <div className="modal-box max-w-xl h-[200px] relative">
+          <form onSubmit={handleUpdate}>
+            <div className="flex gap-2 flex-col md:flex-row">
+              <select
+                name="task"
+                value={updateItem.task || ""}
+                onChange={(e) =>
+                  setUpdateItem({ ...updateItem, task: e.target.value })
+                }
+                className="border w-[150px] rounded px-2 py-1"
+              >
+                <option value="">Select Task</option>
+                <option value="Sales">Sales</option>
+                <option value="Support">Support</option>
+                <option value="Content">Content</option>
+                <option value="Paper-work">Paper-work</option>
+              </select>
+
+              <input
+                name="hours"
+                value={name}
+                type="number"
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Hours Worked"
+                className="border w-[150px] rounded px-2 py-1"
+              />
+
+              <DatePicker
+                selected={editDate}
+                onChange={(date) => setEditDate(date)}
+                className="border w-[150px] rounded px-2 py-1"
+                dateFormat="yyyy-MM-dd"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="btn bg-emerald-500 hover:bg-emerald-600 text-black absolute bottom-4 right-4"
+            >
+              Update
+            </button>
+          </form>
+          <div className="modal-action mt-4 absolute bottom-4 left-4">
+            <form method="dialog">
+              <button className="btn bg-gray-300 hover:bg-gray-400 text-black">
+                Close
+              </button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };
