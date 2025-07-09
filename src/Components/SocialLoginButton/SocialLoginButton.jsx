@@ -21,7 +21,7 @@ const SocialLoginButton = () => {
           email: data?.email,
           name: data?.displayName,
           photo: data?.photoURL,
-          role: "employee",
+          role: "Employee",
           salary: 1000000,
           status: "unVerified",
           created_at: new Date().toISOString(),

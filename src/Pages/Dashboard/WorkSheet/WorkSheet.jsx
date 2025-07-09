@@ -113,6 +113,7 @@ const WorkSheet = () => {
 
   return (
     <div className="p-4 space-y-6 max-w-7xl mx-auto">
+      <h1 className="text-4xl md:text-5xl font-bold text-center text-emerald-500 pb-6">Daily Work Sheet</h1>
       {/* Form */}
       <div className="flex justify-center">
         <form
@@ -158,10 +159,18 @@ const WorkSheet = () => {
         <table className="min-w-full text-left text-black border border-collapse rounded sm:border-separate border-slate-200">
           <thead className="bg-gray-50 uppercase font-semibold text-gray-700">
             <tr>
-              <th className="px-4 py-2">Task</th>
-              <th className="px-4 py-2">Hours</th>
-              <th className="px-4 py-2">Date</th>
-              <th className="px-4 py-2">Action</th>
+              <th className="px-4 py-2 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                Task
+              </th>
+              <th className="px-4 py-2 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                Hours
+              </th>
+              <th className="px-4 py-2 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                Date
+              </th>
+              <th className="px-4 py-2 text-center border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
@@ -174,10 +183,16 @@ const WorkSheet = () => {
             ) : (
               workData.map((item) => (
                 <tr key={item._id} className="hover:bg-gray-50">
-                  <td className="px-4 py-2">{item.task}</td>
-                  <td className="px-4 py-2">{item.hours} Hours</td>
-                  <td className="px-4 py-2">{item.date}</td>
-                  <td className="px-4 py-2 flex gap-3">
+                  <td className="px-4 py-2 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                    {item.task}
+                  </td>
+                  <td className="px-4 py-2 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                    {item.hours} Hours
+                  </td>
+                  <td className="px-4 py-2 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                    {item.date}
+                  </td>
+                  <td className="px-4 py-2 transition duration-300 flex justify-around items-center gap-3 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
                     <button
                       onClick={() => handleEdit(item)}
                       className="text-blue-500 hover:text-blue-700"
@@ -200,7 +215,7 @@ const WorkSheet = () => {
 
       {/* Modal */}
       <dialog id="my_modal_1" className="modal">
-        <div className="modal-box max-w-xl h-[200px] relative">
+        <div className="modal-box max-w-xl md:h-[200px] h-[400px] relative">
           <form onSubmit={handleUpdate}>
             <div className="flex gap-2 flex-col md:flex-row">
               <select
@@ -209,7 +224,7 @@ const WorkSheet = () => {
                 onChange={(e) =>
                   setUpdateItem({ ...updateItem, task: e.target.value })
                 }
-                className="border w-[150px] rounded px-2 py-1"
+                className="border md:w-[150px] rounded px-2 py-1"
               >
                 <option value="">Select Task</option>
                 <option value="Sales">Sales</option>
@@ -224,13 +239,13 @@ const WorkSheet = () => {
                 type="number"
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Hours Worked"
-                className="border w-[150px] rounded px-2 py-1"
+                className="border md:w-[150px] rounded px-2 py-1"
               />
 
               <DatePicker
                 selected={editDate}
                 onChange={(date) => setEditDate(date)}
-                className="border w-[150px] rounded px-2 py-1"
+                className="border md:w-[150px] w-full rounded px-2 py-1"
                 dateFormat="yyyy-MM-dd"
               />
             </div>

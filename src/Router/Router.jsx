@@ -5,6 +5,7 @@ import Register from "../Shared/Register/Register";
 import Login from "../Shared/Login/Login";
 import DashboardLayout from "../Layout/DashboardLayout";
 import WorkSheet from "../Pages/Dashboard/WorkSheet/WorkSheet";
+import EmployeeList from "../Pages/Dashboard/HRField/EmployeeList/EmployeeList";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/workSheet",
         Component: WorkSheet
+      },
+      {
+        path: "/dashboard/employeeList",
+        Component: EmployeeList
       }
     ]
   },
