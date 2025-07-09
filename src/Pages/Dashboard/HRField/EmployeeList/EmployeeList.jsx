@@ -2,11 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 // import useAuth from "../../../../Hooks/useAuth";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import { AiOutlineEye } from "react-icons/ai";
+import { FaMoneyCheckAlt } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const EmployeeList = () => {
   //   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { data: employees = [] } = useQuery({
+  const { data: employees = [], refetch } = useQuery({
     queryKey: ["Employee"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("all-employee-data");
@@ -14,12 +17,22 @@ const EmployeeList = () => {
     },
   });
 
+  const handleVerify = async (id) => {
+    console.log(id);
+    const { data } = await axiosSecure.patch(
+      `employee/update/status/${id}`
+    );
+    toast.success("Employee Verified")
+    refetch()
+    console.log(data);
+  };
+
   console.log(employees);
   return (
     <div className="w-full overflow-x-auto">
       <table
         className="w-full text-left border border-collapse rounded sm:border-separate border-slate-200"
-        cellspacing="0"
+        cellSpacing="0"
       >
         <tbody>
           <tr>
@@ -66,23 +79,37 @@ const EmployeeList = () => {
               Details
             </th>
           </tr>
-          <tr>
-            <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-              Ayub Salas
-            </td>
-            <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-              Designer
-            </td>
-            <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-              Carroll Group
-            </td>
-            <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-              Member
-            </td>
-            <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-              salas_a
-            </td>
-          </tr>
+          {employees.map((employee) => (
+            <tr key={employee._id}>
+              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                {employee.name}
+              </td>
+              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                {employee.email}
+              </td>
+              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                <div className="cursor-pointer"
+                  onClick={() => handleVerify(employee._id, employee.status)}
+                >
+                  {employee.status === "verified" ? "✅" : "❌"}
+                </div>
+              </td>
+              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                {employee.bank_account_no}
+              </td>
+              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                {employee.salary}
+              </td>
+              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                <button disabled={employee.status && "unVerified"}>
+                    <FaMoneyCheckAlt size={22} color="#10B981" />
+                </button>
+              </td>
+              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                <AiOutlineEye size={22} color="#3B82F6" />
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
