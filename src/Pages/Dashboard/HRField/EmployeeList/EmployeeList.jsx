@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { AiOutlineEye } from "react-icons/ai";
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import toast from "react-hot-toast";
+import { Link } from "react-router";
 
 const EmployeeList = () => {
   //   const { user } = useAuth();
@@ -19,11 +20,9 @@ const EmployeeList = () => {
 
   const handleVerify = async (id) => {
     console.log(id);
-    const { data } = await axiosSecure.patch(
-      `employee/update/status/${id}`
-    );
-    toast.success("Employee Verified")
-    refetch()
+    const { data } = await axiosSecure.patch(`employee/update/status/${id}`);
+    toast.success("Employee Verified");
+    refetch();
     console.log(data);
   };
 
@@ -88,7 +87,8 @@ const EmployeeList = () => {
                 {employee.email}
               </td>
               <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-                <div className="cursor-pointer"
+                <div
+                  className="cursor-pointer"
                   onClick={() => handleVerify(employee._id, employee.status)}
                 >
                   {employee.status === "verified" ? "✅" : "❌"}
@@ -100,13 +100,15 @@ const EmployeeList = () => {
               <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
                 {employee.salary}
               </td>
-              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 disabled:cursor-not-allowed">
                 <button disabled={employee.status && "unVerified"}>
-                    <FaMoneyCheckAlt size={22} color="#10B981" />
+                  <FaMoneyCheckAlt size={22} color="#10B981" />
                 </button>
               </td>
               <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-                <AiOutlineEye size={22} color="#3B82F6" />
+                <Link to={`/dashboard/employeeDetails/${employee._id}`}>
+                  <AiOutlineEye size={22} color="#3B82F6" />
+                </Link>
               </td>
             </tr>
           ))}

@@ -6,6 +6,8 @@ import Login from "../Shared/Login/Login";
 import DashboardLayout from "../Layout/DashboardLayout";
 import WorkSheet from "../Pages/Dashboard/WorkSheet/WorkSheet";
 import EmployeeList from "../Pages/Dashboard/HRField/EmployeeList/EmployeeList";
+import EmployeeDetails from "../Pages/Dashboard/HRField/EmployeeDetails/EmployeeDetails";
+import ProgressList from "../Pages/Dashboard/HRField/ProgressList/ProgressList";
 
 export const router = createBrowserRouter([
   {
@@ -32,12 +34,20 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard/workSheet",
-        Component: WorkSheet
+        Component: WorkSheet,
       },
       {
         path: "/dashboard/employeeList",
-        Component: EmployeeList
-      }
-    ]
+        Component: EmployeeList,
+      },
+      {
+        path: "/dashboard/employeeDetails/:id",
+        Component: EmployeeDetails,
+      },
+      {
+        path: "/dashboard/progressList",
+        Component: ProgressList,
+      },
+    ],
   },
 ]);
