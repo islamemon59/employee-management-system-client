@@ -33,7 +33,7 @@ const Register = () => {
           photo: image,
           role: data.role,
           salary: data.salary,
-          status: "unVerified",
+          status: data.role === "HR" ? "verified" : "unverified",
           created_at: new Date().toISOString(),
           last_log_in: new Date().toISOString(),
         };
