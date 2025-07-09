@@ -1,15 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 // import useAuth from "../../../../Hooks/useAuth";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { AiOutlineEye } from "react-icons/ai";
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { Link } from "react-router";
+import PayModal from "../PayModal/PayModal";
 
 const EmployeeList = () => {
   //   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const [employeeData, setEmployeeData] = useState(null);
   const { data: employees = [], refetch } = useQuery({
     queryKey: ["Employee"],
     queryFn: async () => {
@@ -24,6 +26,12 @@ const EmployeeList = () => {
     toast.success("Employee Verified");
     refetch();
     console.log(data);
+  };
+
+  const handlePayRequest = (employee) => {
+    setEmployeeData(employee);
+
+    document.getElementById("my_modal_1").showModal();
   };
 
   console.log(employees);
@@ -101,7 +109,7 @@ const EmployeeList = () => {
                 {employee.salary}
               </td>
               <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 disabled:cursor-not-allowed">
-                <button disabled={employee.status && "unVerified"}>
+                <button onClick={() => handlePayRequest(employee)}>
                   <FaMoneyCheckAlt size={22} color="#10B981" />
                 </button>
               </td>
@@ -114,6 +122,7 @@ const EmployeeList = () => {
           ))}
         </tbody>
       </table>
+      <PayModal employeeData={employeeData}></PayModal>
     </div>
   );
 };
