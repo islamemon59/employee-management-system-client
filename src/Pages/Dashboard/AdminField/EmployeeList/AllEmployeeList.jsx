@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import Loader from "../../../../Shared/Loader/Loader";
+import Swal from "sweetalert2";
 
 const AllEmployeeList = () => {
   const axiosSecure = useAxiosSecure();
@@ -28,12 +29,32 @@ const AllEmployeeList = () => {
     toast.success("Successfully Updated");
     console.log(data);
   };
+
   const handleFired = async (id) => {
     console.log(id);
-    const { data } = await axiosSecure.patch(`fired/employee/${id}`);
-    refetch();
-    toast.success("Employee Fired");
-    console.log(data);
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const { data } = await axiosSecure.patch(`fired/employee/${id}`);
+        refetch();
+        console.log(data);
+        if (data.modifiedCount) {
+          Swal.fire({
+            title: "Fired 🔥!",
+            text: "Employee Fired Successfully.",
+            icon: "success",
+          });
+        }
+      }
+    });
   };
 
   if (isLoading) return <Loader />;
@@ -83,9 +104,9 @@ const AllEmployeeList = () => {
                 </td>
                 <td
                   onClick={() => handleFired(employee._id)}
-                  className="h-12 px-6 text-center transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 "
+                  className="h-12 px-6 text-center transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 cursor-pointer"
                 >
-                  {employee.isFire === "fire" ? (
+                  {employee.isFire === "Fired" ? (
                     <span className="text-md font-bold text-red-500">
                       Fired
                     </span>
