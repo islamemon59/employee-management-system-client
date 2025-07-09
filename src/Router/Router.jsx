@@ -9,6 +9,7 @@ import EmployeeList from "../Pages/Dashboard/HRField/EmployeeList/EmployeeList";
 import EmployeeDetails from "../Pages/Dashboard/HRField/EmployeeDetails/EmployeeDetails";
 import ProgressList from "../Pages/Dashboard/HRField/ProgressList/ProgressList";
 import AllEmployeeList from "../Pages/Dashboard/AdminField/EmployeeList/AllEmployeeList";
+import PayRoll from "../Pages/Dashboard/AdminField/PayRoll/PayRoll";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/allEmployeeList",
         Component: AllEmployeeList,
+      },
+      {
+        path: "/dashboard/payRoll",
+        Component: PayRoll,
       },
     ],
   },
