@@ -3,6 +3,7 @@ import { Outlet, useNavigate } from "react-router";
 import { BiLogOut } from "react-icons/bi";
 import useAuth from "../Hooks/useAuth";
 import DashboardNavLinks from "../Components/DashboardNavlinks/DashboardNavlinks";
+import { MdClose } from "react-icons/md";
 
 const DashboardLayout = () => {
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
@@ -22,13 +23,12 @@ const DashboardLayout = () => {
 
   return (
     <>
-      {/*  <!-- Component: Side navigation menu with user profile and user contacts --> */}
 
       {/*  <!-- Mobile trigger --> */}
       <button
         title="Side navigation"
         type="button"
-        className={`visible fixed left-6 top-6 z-40 order-10 block h-10 w-10 self-center rounded bg-white opacity-100 lg:hidden ${
+        className={`visible fixed left-2 top-1 z-40 order-10 block h-10 w-10 self-center rounded bg-white opacity-100 lg:hidden ${
           isSideNavOpen
             ? "visible opacity-100 [&_span:nth-child(1)]:w-6 [&_span:nth-child(1)]:translate-y-0 [&_span:nth-child(1)]:rotate-45 [&_span:nth-child(3)]:w-0 [&_span:nth-child(2)]:-rotate-45 "
             : ""
@@ -59,10 +59,12 @@ const DashboardLayout = () => {
       <aside
         id="nav-menu-5"
         aria-label="Side navigation"
-        className={`fixed top-0 bottom-0 left-0 z-40 flex w-72 flex-col border-r border-r-slate-200 transition-transform lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-40 flex w-72 flex-col border-r border-r-slate-200 bg-white transition-transform lg:translate-x-0 ${
           isSideNavOpen ? "translate-x-0" : " -translate-x-full"
         }`}
       >
+
+        <button onClick={() => setIsSideNavOpen(!isSideNavOpen)} className="absolute top-3 right-3"><MdClose size={24} className="text-gray-600 hover:text-black cursor-pointer" /></button>
         <div className="flex flex-col items-center gap-4 border-b border-slate-200 p-6">
           <div className="shrink-0">
             <a

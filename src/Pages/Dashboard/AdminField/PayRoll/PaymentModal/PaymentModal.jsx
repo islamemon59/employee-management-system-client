@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React from "react";
 import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { MdClose } from "react-icons/md";
 
 const PaymentModal = ({ payEmployee, refetch }) => {
   const stripe = useStripe();
@@ -77,9 +78,19 @@ const PaymentModal = ({ payEmployee, refetch }) => {
     }
   };
 
+  const handleModal = () => {
+    document.getElementById("my_modal_1").close();
+  };
+
   return (
     <dialog id="my_modal_1" className="modal">
-      <div className="modal-box">
+      <div className="modal-box relative">
+        <button onClick={handleModal} className="absolute bottom-3 left-3">
+          <MdClose
+            size={24}
+            className="text-gray-600 hover:text-black cursor-pointer"
+          />
+        </button>
         <form onSubmit={handleSubmit}>
           <CardElement
             className="border-1 p-4 rounded"

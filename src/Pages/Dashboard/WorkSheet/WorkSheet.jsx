@@ -112,17 +112,19 @@ const WorkSheet = () => {
   if (isLoading || loading) return <Loader />;
 
   return (
-    <div className="p-4 space-y-6 max-w-7xl mx-auto">
-      <h1 className="text-4xl md:text-5xl font-bold text-center text-emerald-500 pb-6">Daily Work Sheet</h1>
+    <div className="space-y-6 max-w-4xl mx-auto mt-10">
+      <h1 className="text-3xl md:text-5xl font-bold text-center text-emerald-500 pb-6">
+        Daily Work Sheet
+      </h1>
       {/* Form */}
       <div className="flex justify-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col md:flex-row items-center gap-2"
+          className="flex flex-col md:flex-row items-center gap-2 w-full"
         >
           <select
             {...register("task", { required: true })}
-            className="border rounded px-2 py-1"
+            className="border rounded px-2 py-1 w-full"
           >
             <option value="">Select Task</option>
             <option value="Sales">Sales</option>
@@ -135,15 +137,15 @@ const WorkSheet = () => {
             type="number"
             placeholder="Hours Worked"
             {...register("hours", { required: true })}
-            className="border rounded px-2 py-1"
+            className="border rounded px-2 py-1 w-full"
           />
 
-          <DatePicker
-            selected={selectedDate}
-            onChange={(date) => setSelectedDate(date)}
-            className="border rounded px-2 py-1"
-            dateFormat="yyyy-MM-dd"
-          />
+            <DatePicker
+              selected={selectedDate}
+              onChange={(date) => setSelectedDate(date)}
+              className="border rounded px-2 py-1"
+              dateFormat="yyyy-MM-dd"
+            />
 
           <button
             type="submit"

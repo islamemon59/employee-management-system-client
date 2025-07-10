@@ -36,93 +36,97 @@ const EmployeeList = () => {
 
   console.log(employees);
   return (
-    <div className="w-full overflow-x-auto">
-      <table
-        className="w-full text-left border border-collapse rounded sm:border-separate border-slate-200"
-        cellSpacing="0"
-      >
-        <tbody>
-          <tr>
-            <th
-              scope="col"
-              className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100"
-            >
-              Name
-            </th>
-            <th
-              scope="col"
-              className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100"
-            >
-              Email
-            </th>
-            <th
-              scope="col"
-              className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100"
-            >
-              Verified
-            </th>
-            <th
-              scope="col"
-              className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100"
-            >
-              Bank Account
-            </th>
-            <th
-              scope="col"
-              className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100"
-            >
-              Salary
-            </th>
-            <th
-              scope="col"
-              className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100"
-            >
-              Pay
-            </th>
-            <th
-              scope="col"
-              className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100"
-            >
-              Details
-            </th>
-          </tr>
-          {employees.map((employee) => (
-            <tr key={employee._id}>
-              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-                {employee.name}
-              </td>
-              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-                {employee.email}
-              </td>
-              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
-                <div
-                  className="cursor-pointer"
-                  onClick={() => handleVerify(employee._id, employee.status)}
-                >
-                  {employee.status === "verified" ? "✅" : "❌"}
-                </div>
-              </td>
-              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-                {employee.bank_account_no}
-              </td>
-              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-                {employee.salary}
-              </td>
-              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 disabled:cursor-not-allowed">
-                <button onClick={() => handlePayRequest(employee)}>
-                  <FaMoneyCheckAlt size={22} color="#10B981" />
-                </button>
-              </td>
-              <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-                <Link to={`/dashboard/employeeDetails/${employee._id}`}>
-                  <AiOutlineEye size={22} color="#3B82F6" />
-                </Link>
-              </td>
+    <div className="space-y-6 max-w-6xl mx-auto mt-10">
+      <div className="w-full overflow-x-auto">
+        <table
+          className="w-full text-left border border-collapse rounded sm:border-separate border-slate-200"
+          cellSpacing="0"
+        >
+          <thead className="bg-gray-50 uppercase font-semibold text-gray-700">
+            <tr>
+              <th
+                scope="col"
+                className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100"
+              >
+                Name
+              </th>
+              <th
+                scope="col"
+                className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100"
+              >
+                Email
+              </th>
+              <th
+                scope="col"
+                className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100"
+              >
+                Verified
+              </th>
+              <th
+                scope="col"
+                className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100"
+              >
+                Bank Account
+              </th>
+              <th
+                scope="col"
+                className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100"
+              >
+                Salary
+              </th>
+              <th
+                scope="col"
+                className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100"
+              >
+                Pay
+              </th>
+              <th
+                scope="col"
+                className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100"
+              >
+                Details
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <PayModal employeeData={employeeData}></PayModal>
+          </thead>
+          <tbody>
+            {employees.map((employee) => (
+              <tr key={employee._id}>
+                <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                  {employee.name}
+                </td>
+                <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                  {employee.email}
+                </td>
+                <td className="h-12 px-6 text-center transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => handleVerify(employee._id, employee.status)}
+                  >
+                    {employee.status === "verified" ? "✅" : "❌"}
+                  </div>
+                </td>
+                <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                  {employee.bank_account_no}
+                </td>
+                <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                  {employee.salary}
+                </td>
+                <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 disabled:cursor-not-allowed">
+                  <button onClick={() => handlePayRequest(employee)}>
+                    <FaMoneyCheckAlt size={22} color="#10B981" />
+                  </button>
+                </td>
+                <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                  <Link to={`/dashboard/employeeDetails/${employee._id}`}>
+                    <AiOutlineEye size={22} color="#3B82F6" />
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <PayModal employeeData={employeeData}></PayModal>
+      </div>
     </div>
   );
 };

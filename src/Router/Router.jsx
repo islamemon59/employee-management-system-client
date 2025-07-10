@@ -12,6 +12,7 @@ import AllEmployeeList from "../Pages/Dashboard/AdminField/EmployeeList/AllEmplo
 import PayRoll from "../Pages/Dashboard/AdminField/PayRoll/PayRoll";
 import Forbidden from "../Components/Forbidden/Forbidden";
 import PrivateRoute from "../Private/PrivateRoute";
+import EmployeePaymentHistory from "../Pages/Dashboard/PaymentHistory/EmployeePaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <WorkSheet></WorkSheet>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/paymentHistory",
+        element: (
+          <PrivateRoute>
+            <EmployeePaymentHistory/>
           </PrivateRoute>
         ),
       },
