@@ -27,10 +27,10 @@ const NavbarLinks = ({ isToggleOpen }) => {
         </NavLink>
       </li>
       <li role="none" className="flex items-stretch">
-        <NavLink
+        <NavLink to="/contactUs"
           className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 lg:px-8"
         >
-          <span>Wishlist</span>
+          <span>Contact Us</span>
         </NavLink>
       </li>
     </ul>

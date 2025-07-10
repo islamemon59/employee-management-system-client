@@ -13,6 +13,7 @@ import PayRoll from "../Pages/Dashboard/AdminField/PayRoll/PayRoll";
 import Forbidden from "../Components/Forbidden/Forbidden";
 import PrivateRoute from "../Private/PrivateRoute";
 import EmployeePaymentHistory from "../Pages/Dashboard/PaymentHistory/EmployeePaymentHistory";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "login",
         Component: Login,
+      },
+      {
+        path: "contactUs",
+        Component: ContactUs,
       },
     ],
   },

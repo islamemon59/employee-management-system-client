@@ -5,7 +5,7 @@ import {
 } from "react-icons/md";
 import { NavLink } from "react-router";
 import { MdAssignment } from "react-icons/md";
-import { FiUsers } from "react-icons/fi";
+import { FiHome, FiUsers } from "react-icons/fi";
 import { FaMoneyCheckAlt, FaUsers } from "react-icons/fa";
 import useUserRole from "../../Hooks/useUserRole";
 
@@ -15,6 +15,17 @@ const DashboardNavLinks = () => {
 
   return (
     <ul className="flex flex-1 flex-col gap-1 py-3">
+      <li className="px-3">
+        <NavLink
+          to="/"
+          className="flex items-center gap-3 rounded p-3 transition-colors hover:bg-teal-50 hover:text-teal-500 focus:bg-teal-50"
+        >
+          <FiHome className="text-xl"/>
+          <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
+            Home
+          </div>
+        </NavLink>
+      </li>
       <li className="px-3">
         <NavLink
           to="/dashboard/workSheet"
