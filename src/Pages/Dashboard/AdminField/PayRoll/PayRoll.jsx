@@ -5,6 +5,7 @@ import { FaCreditCard } from "react-icons/fa";
 import PaymentModal from "./PaymentModal/PaymentModal";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import Loader from "../../../../Shared/Loader/Loader";
 
 const stripePromise = loadStripe(import.meta.env.VITE_payment_key);
 
@@ -12,7 +13,11 @@ const PayRoll = () => {
   const axiosSecure = useAxiosSecure();
   const [payEmployee, setPayEmployee] = useState("");
 
-  const { data: employees = [] } = useQuery({
+  const {
+    data: employees = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["paidAt"],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
@@ -26,6 +31,8 @@ const PayRoll = () => {
     setPayEmployee(employee);
     document.getElementById("my_modal_1").showModal();
   };
+
+  if (isLoading) return <Loader />;
 
   return (
     <div className="overflow-x-auto">
@@ -76,13 +83,20 @@ const PayRoll = () => {
                 </td>
                 <td
                   onClick={() => handlePay(employee)}
-                  className="h-12 px-6 text-center transition flex justify-center items-center gap-1 duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 cursor-pointer"
+                  className="h-12 px-6 text-center transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 cursor-pointer"
                 >
-                  <FaCreditCard size={22} className="text-emerald-500" />
-                  <span className="font-bold text-emerald-500">Pay</span>
+                  <button
+                    disabled={employee.paidAt}
+                    className="flex justify-center items-center gap-1 disabled:cursor-not-allowed"
+                  >
+                    <FaCreditCard size={22} className="text-emerald-500" />
+                    <span className="font-bold text-emerald-500">Pay</span>
+                  </button>
                 </td>
                 <td className="h-12 px-6 text-center transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 cursor-pointer">
-                  {employee.paidAt ? employee.paidAt : "-"}
+                  {employee.paidAt
+                    ? new Date(employee.paidAt).toLocaleDateString()
+                    : "-"}
                 </td>
               </tr>
             ))
@@ -90,7 +104,10 @@ const PayRoll = () => {
         </tbody>
       </table>
       <Elements stripe={stripePromise}>
-        <PaymentModal payEmployee={payEmployee}></PaymentModal>
+        <PaymentModal
+          payEmployee={payEmployee}
+          refetch={refetch}
+        ></PaymentModal>
       </Elements>
     </div>
   );

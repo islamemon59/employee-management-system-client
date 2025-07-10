@@ -80,10 +80,18 @@ const ProgressList = () => {
         <table className="min-w-full border border-collapse rounded border-slate-300">
           <thead className="bg-slate-100">
             <tr>
-              <th className="px-4 py-2">Name</th>
-              <th className="px-4 py-2">Task</th>
-              <th className="px-4 py-2">Hours</th>
-              <th className="px-4 py-2">Date</th>
+              <th className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                Name
+              </th>
+              <th className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                Task
+              </th>
+              <th className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                Hours
+              </th>
+              <th className="h-12 px-6 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                Date
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -96,10 +104,10 @@ const ProgressList = () => {
             ) : (
               workData.map((item) => (
                 <tr key={item._id} className="hover:bg-gray-50">
-                  <td className="border px-4 py-2">{item.name}</td>
-                  <td className="border px-4 py-2">{item.task}</td>
-                  <td className="border px-4 py-2">{item.hours} hrs</td>
-                  <td className="border px-4 py-2">{item.date}</td>
+                  <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">{item.name}</td>
+                  <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">{item.task}</td>
+                  <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">{item.hours} hrs</td>
+                  <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">{item.date}</td>
                 </tr>
               ))
             )}

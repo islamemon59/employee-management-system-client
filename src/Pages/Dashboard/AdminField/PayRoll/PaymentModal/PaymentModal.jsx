@@ -3,7 +3,7 @@ import React from "react";
 import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 
-const PaymentModal = ({ payEmployee }) => {
+const PaymentModal = ({ payEmployee, refetch }) => {
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
@@ -47,15 +47,34 @@ const PaymentModal = ({ payEmployee }) => {
       },
     });
 
+    console.log(result);
+
     if (result.error) {
       console.error(result.error.message);
     } else {
       if (result.paymentIntent.status === "succeeded") {
         toast.success("Payment successful!");
+
+        const paymentData = {
+          name: payEmployee.name,
+          email: payEmployee.email,
+          amount: payEmployee.salary,
+          month: payEmployee.month,
+          year: payEmployee.year,
+          transactionId: result.paymentIntent.id,
+        };
+
+        const { data } = await axiosSecure.post(
+          `employee/payment/data/${payEmployee.id}`,
+          paymentData
+        );
+
+        refetch();
+
+        console.log(data);
+        document.getElementById("my_modal_1").close();
       }
     }
-
-    // document.getElementById("my_modal_1").closeModal();
   };
 
   return (
