@@ -4,8 +4,13 @@ import { NavLink } from "react-router";
 import { MdAssignment } from "react-icons/md";
 import { FiUsers } from "react-icons/fi";
 import { FaMoneyCheckAlt, FaUsers } from "react-icons/fa";
+import useUserRole from "../../Hooks/useUserRole";
 
 const DashboardNavLinks = () => {
+
+  const {role, isLoading} = useUserRole()
+  console.log(role);
+
   return (
     <ul className="flex flex-1 flex-col gap-1 py-3">
       <li className="px-3">

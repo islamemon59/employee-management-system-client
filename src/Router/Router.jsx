@@ -10,6 +10,7 @@ import EmployeeDetails from "../Pages/Dashboard/HRField/EmployeeDetails/Employee
 import ProgressList from "../Pages/Dashboard/HRField/ProgressList/ProgressList";
 import AllEmployeeList from "../Pages/Dashboard/AdminField/EmployeeList/AllEmployeeList";
 import PayRoll from "../Pages/Dashboard/AdminField/PayRoll/PayRoll";
+import Forbidden from "../Components/Forbidden/Forbidden";
 
 export const router = createBrowserRouter([
   {
@@ -60,4 +61,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/forbidden",
+    Component: Forbidden,
+  }
 ]);

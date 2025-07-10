@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { FaCreditCard } from "react-icons/fa";
+import PaymentModal from "./PaymentModal/PaymentModal";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(import.meta.env.VITE_payment_key);
 
 const PayRoll = () => {
   const axiosSecure = useAxiosSecure();
+  const [payEmployee, setPayEmployee] = useState("");
 
   const { data: employees = [] } = useQuery({
     queryKey: ["paidAt"],
@@ -14,6 +21,11 @@ const PayRoll = () => {
       return data;
     },
   });
+
+  const handlePay = (employee) => {
+    setPayEmployee(employee);
+    document.getElementById("my_modal_1").showModal();
+  };
 
   return (
     <div className="overflow-x-auto">
@@ -31,6 +43,9 @@ const PayRoll = () => {
             </th>
             <th className="h-12 px-6 font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
               Year
+            </th>
+            <th className="h-12 px-6 font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+              Payment
             </th>
             <th className="h-12 px-6 font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
               Payment Date
@@ -59,6 +74,13 @@ const PayRoll = () => {
                 <td className="h-12 px-6 text-center transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 cursor-pointer">
                   {employee.year}
                 </td>
+                <td
+                  onClick={() => handlePay(employee)}
+                  className="h-12 px-6 text-center transition flex justify-center items-center gap-1 duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 cursor-pointer"
+                >
+                  <FaCreditCard size={22} className="text-emerald-500" />
+                  <span className="font-bold text-emerald-500">Pay</span>
+                </td>
                 <td className="h-12 px-6 text-center transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 cursor-pointer">
                   {employee.paidAt ? employee.paidAt : "-"}
                 </td>
@@ -67,6 +89,9 @@ const PayRoll = () => {
           )}
         </tbody>
       </table>
+      <Elements stripe={stripePromise}>
+        <PaymentModal payEmployee={payEmployee}></PaymentModal>
+      </Elements>
     </div>
   );
 };
