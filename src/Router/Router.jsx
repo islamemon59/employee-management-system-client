@@ -11,6 +11,7 @@ import ProgressList from "../Pages/Dashboard/HRField/ProgressList/ProgressList";
 import AllEmployeeList from "../Pages/Dashboard/AdminField/EmployeeList/AllEmployeeList";
 import PayRoll from "../Pages/Dashboard/AdminField/PayRoll/PayRoll";
 import Forbidden from "../Components/Forbidden/Forbidden";
+import PrivateRoute from "../Private/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -33,36 +34,65 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard/workSheet",
-        Component: WorkSheet,
+        element: (
+          <PrivateRoute>
+            <WorkSheet></WorkSheet>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/employeeList",
-        Component: EmployeeList,
+        element: (
+          <PrivateRoute>
+            <EmployeeList />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/employeeDetails/:id",
-        Component: EmployeeDetails,
+        element: (
+          <PrivateRoute>
+            <EmployeeList />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/progressList",
-        Component: ProgressList,
+        element: (
+          <PrivateRoute>
+            <ProgressList />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/allEmployeeList",
-        Component: AllEmployeeList,
+        element: (
+          <PrivateRoute>
+            <AllEmployeeList />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/payRoll",
         Component: PayRoll,
+        element: (
+          <PrivateRoute>
+            <PayRoll />
+          </PrivateRoute>
+        ),
       },
     ],
   },
   {
     path: "/forbidden",
     Component: Forbidden,
-  }
+  },
 ]);

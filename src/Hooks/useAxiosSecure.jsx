@@ -9,6 +9,7 @@ const axiosSecure = axios.create({
 
 const useAxiosSecure = () => {
   const { user } = useAuth();
+  console.log(user?.accessToken);
   const navigate = useNavigate();
   useEffect(() => {
     axiosSecure.interceptors.request.use(
@@ -41,7 +42,7 @@ const useAxiosSecure = () => {
         return Promise.reject(error);
       }
     );
-  }, [navigate, user?.accessToken]);
+  }, [navigate, user]);
 
   return axiosSecure;
 };
