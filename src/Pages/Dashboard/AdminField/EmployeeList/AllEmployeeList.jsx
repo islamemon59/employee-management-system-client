@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import Loader from "../../../../Shared/Loader/Loader";
 import Swal from "sweetalert2";
+import { FiGrid, FiList } from "react-icons/fi";
+import EmployeeCardView from "./EmployeeCardView";
 
 const AllEmployeeList = () => {
   const axiosSecure = useAxiosSecure();
+  const [toggle, setToggle] = useState(false);
+  console.log(toggle);
 
   const {
     data: employees = [],
@@ -60,67 +64,99 @@ const AllEmployeeList = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto mt-10">
-      <div className="overflow-x-auto">
-        <table className="min-w-full border border-collapse rounded border-slate-300">
-          <thead className="bg-gray-50 uppercase font-semibold text-gray-700">
-            <tr>
-              <th className="h-12 px-6 text-start border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
-                Name
-              </th>
-              <th className="h-12 px-6 text-start border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
-                Designation
-              </th>
-              <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
-                Make HR
-              </th>
-              <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
-                Fire
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {employees.length === 0 ? (
+    <div className="relative space-y-6 max-w-4xl mx-auto mt-10">
+      {toggle ? (
+        <button
+          className="absolute top-16 right-0 text-blue-600"
+          onClick={() => setToggle(!toggle)}
+        >
+          <FiGrid size={20} />
+        </button>
+      ) : (
+        <button
+          className="absolute top-16 right-0 text-blue-600"
+          onClick={() => setToggle(!toggle)}
+        >
+          <FiList size={20} />
+        </button>
+      )}
+
+      <h1 className="text-3xl md:text-5xl font-bold text-center text-emerald-500 pb-6">
+        All Employee List
+      </h1>
+
+      {toggle ? (
+        <EmployeeCardView
+          employees={employees}
+          handleMakeHr={handleMakeHr}
+          handleFired={handleFired}
+        />
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="min-w-full border border-collapse rounded border-slate-300">
+            <thead className="bg-gray-50 uppercase font-semibold text-gray-700">
               <tr>
-                <td colSpan="4" className="text-center p-4 text-gray-400">
-                  No data found
-                </td>
+                <th className="h-12 px-6 text-start border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                  Name
+                </th>
+                <th className="h-12 px-6 text-start border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                  Designation
+                </th>
+                <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                  Make HR
+                </th>
+                <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                  Fire
+                </th>
               </tr>
-            ) : (
-              employees.map((employee) => (
-                <tr key={employee._id} className="hover:bg-gray-50">
-                  <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-                    {employee.name}
-                  </td>
-                  <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-                    {employee.designation}
-                  </td>
-                  <td
-                    onClick={() => handleMakeHr(employee._id)}
-                    className="h-12 px-6 cursor-pointer transition duration-300 text-center border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 "
-                  >
-                    {employee.role === "Employee"
-                      ? <span className="font-semibold px-2 py-1 bg-emerald-500 rounded-md">Accept</span>
-                      : employee.role === "HR" && "✅"}
-                  </td>
-                  <td
-                    onClick={() => handleFired(employee._id)}
-                    className="h-12 px-6 text-center transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 cursor-pointer"
-                  >
-                    {employee.isFire === "Fired" ? (
-                      <span className="text-md font-bold text-red-500">
-                        Fired
-                      </span>
-                    ) : (
-                      "🔥"
-                    )}
+            </thead>
+            <tbody>
+              {employees.length === 0 ? (
+                <tr>
+                  <td colSpan="4" className="text-center p-4 text-gray-400">
+                    No data found
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+              ) : (
+                employees.map((employee) => (
+                  <tr key={employee._id} className="hover:bg-gray-50">
+                    <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                      {employee.name}
+                    </td>
+                    <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                      {employee.designation}
+                    </td>
+                    <td
+                      onClick={() => handleMakeHr(employee._id)}
+                      className="h-12 px-6 cursor-pointer transition duration-300 text-center border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 "
+                    >
+                      {employee.role === "Employee" ? (
+                        <span className="font-semibold px-2 py-1 bg-emerald-500 rounded-md">
+                          Accept
+                        </span>
+                      ) : (
+                        employee.role === "HR" && "✅"
+                      )}
+                    </td>
+                    <td
+                      onClick={() => handleFired(employee._id)}
+                      className="h-12 px-6 text-center transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 cursor-pointer"
+                    >
+                      {employee.isFire === "Fired" ? (
+                        <span className="text-md font-bold text-red-500">
+                          Fired
+                        </span>
+                      ) : (
+                        "🔥"
+                      )}
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };
