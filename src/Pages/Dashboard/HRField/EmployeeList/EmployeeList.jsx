@@ -7,12 +7,13 @@ import { FaMoneyCheckAlt } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { Link } from "react-router";
 import PayModal from "../PayModal/PayModal";
+import Loader from "../../../../Shared/Loader/Loader";
 
 const EmployeeList = () => {
   //   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [employeeData, setEmployeeData] = useState(null);
-  const { data: employees = [], refetch } = useQuery({
+  const { data: employees = [], refetch, isLoading } = useQuery({
     queryKey: ["Employee"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("all-employee-data");
@@ -34,7 +35,8 @@ const EmployeeList = () => {
     document.getElementById("my_modal_1").showModal();
   };
 
-  console.log(employees);
+  if(isLoading) return <Loader/>
+
   return (
     <div className="space-y-6 max-w-6xl mx-auto mt-10">
       <h1 className="text-3xl md:text-5xl font-bold text-center text-emerald-500 pb-6">

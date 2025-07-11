@@ -43,15 +43,12 @@ const PaymentModal = ({ payEmployee, refetch }) => {
     });
 
     const clientSecret = data.clientSecret;
-    console.log(clientSecret);
 
     const result = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
         card: elements.getElement(CardElement),
       },
     });
-
-    console.log(result);
 
     if (result.error) {
       console.error(result.error.message);

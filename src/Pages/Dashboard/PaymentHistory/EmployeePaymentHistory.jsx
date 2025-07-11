@@ -2,6 +2,7 @@ import React from "react";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Loader from "../../../Shared/Loader/Loader";
 
 const EmployeePaymentHistory = () => {
   const { user } = useAuth();
@@ -9,7 +10,7 @@ const EmployeePaymentHistory = () => {
 
   const email = user?.email;
 
-  const { data: payments = [] } = useQuery({
+  const { data: payments = [], isLoading } = useQuery({
     queryKey: ["email", email],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
@@ -18,6 +19,9 @@ const EmployeePaymentHistory = () => {
       return data;
     },
   });
+
+  if(isLoading) return <Loader/>
+
   return (
     <div className="max-w-3xl mx-auto space-y-4 mt-10">
         <h1 className="text-3xl md:text-5xl font-bold text-center pb-6 text-emerald-500">Salary Payment History</h1>

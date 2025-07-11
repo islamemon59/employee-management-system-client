@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NavbarLinks from "../../Components/NavbarLinks/NavbarLinks";
 import useAuth from "../../Hooks/useAuth";
 import { Link } from "react-router";
+import Loader from "../Loader/Loader";
 
 const Navbar = () => {
   const [isToggleOpen, setIsToggleOpen] = useState(false);
@@ -17,10 +18,7 @@ const Navbar = () => {
       });
   };
 
-  if (loading) {
-    return <p>Loading</p>;
-  }
-
+  if (loading) return <Loader/>
   return (
     <>
       {/*<!-- Top bar --> */}
