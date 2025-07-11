@@ -1,5 +1,4 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React from "react";
 import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { MdClose } from "react-icons/md";
@@ -8,6 +7,10 @@ const PaymentModal = ({ payEmployee, refetch }) => {
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
+
+  const requestId = payEmployee?._id;
+
+  console.log(requestId);
 
   const salary = payEmployee.salary;
   const salaryInCents = parseInt(salary) * 100;
@@ -57,16 +60,18 @@ const PaymentModal = ({ payEmployee, refetch }) => {
         toast.success("Payment successful!");
 
         const paymentData = {
+          id: payEmployee.id,
           name: payEmployee.name,
           email: payEmployee.email,
           amount: payEmployee.salary,
           month: payEmployee.month,
           year: payEmployee.year,
+          createdAt: new Date().toISOString(),
           transactionId: result.paymentIntent.id,
         };
 
         const { data } = await axiosSecure.post(
-          `employee/payment/data/${payEmployee.id}`,
+          `employee/payment/data/${requestId}`,
           paymentData
         );
 

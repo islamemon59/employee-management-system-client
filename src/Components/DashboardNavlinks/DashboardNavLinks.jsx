@@ -11,7 +11,6 @@ import useUserRole from "../../Hooks/useUserRole";
 
 const DashboardNavLinks = () => {
   const { role, isLoading } = useUserRole();
-  console.log(role);
 
   return (
     <ul className="flex flex-1 flex-col gap-1 py-3">

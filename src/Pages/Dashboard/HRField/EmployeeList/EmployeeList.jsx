@@ -116,8 +116,8 @@ const EmployeeList = () => {
                     <FaMoneyCheckAlt size={22} color="#10B981" />
                   </button>
                 </td>
-                <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-                  <Link to={`/dashboard/employeeDetails/${employee._id}`}>
+                <td className="h-12 px-6 transition flex justify-center items-center duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                  <Link to={`/dashboard/employeeDetails/${employee._id}`} >
                     <AiOutlineEye size={22} color="#3B82F6" />
                   </Link>
                 </td>

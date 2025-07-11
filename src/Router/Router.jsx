@@ -74,6 +74,14 @@ export const router = createBrowserRouter([
         path: "/dashboard/employeeDetails/:id",
         element: (
           <PrivateRoute>
+            <EmployeeDetails/>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/employeeDetails/:id",
+        element: (
+          <PrivateRoute>
             <EmployeeList />
           </PrivateRoute>
         ),
