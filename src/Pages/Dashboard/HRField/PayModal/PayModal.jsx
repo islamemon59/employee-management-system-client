@@ -59,20 +59,20 @@ const PayModal = ({ employeeData }) => {
   return (
     <div>
       <dialog id="my_modal_1" className="modal">
-        <div className="modal-box max-w-xl md:h-[200px] h-[400px] relative">
+        <div className="modal-box max-w-xl md:h-[200px] h-[250px] relative">
           <form onSubmit={handleRequest}>
             <div className="flex gap-2 flex-col md:flex-row">
               <input
                 name="salary"
                 type="text"
                 value={salary}
-                className="border md:w-[150px] rounded px-2 py-1"
+                className="border md:w-[170px] rounded px-2 py-1"
               />
               <select
                 name="month"
                 value={selectMonth || ""}
                 onChange={(e) => setSelectMonth(e.target.value)}
-                className="border md:w-[150px] rounded px-2 py-1"
+                className="border md:w-[170px] rounded px-2 py-1"
               >
                 {months.map((month) => (
                   <option key={month} value={month}>
@@ -84,7 +84,7 @@ const PayModal = ({ employeeData }) => {
                 name="year"
                 value={selectedYear || ""}
                 onChange={(e) => setSelectedYear(e.target.value)}
-                className="border md:w-[150px] rounded px-2 py-1"
+                className="border md:w-[170px] rounded px-2 py-1"
               >
                 {years.map((year) => (
                   <option key={year} value={year}>

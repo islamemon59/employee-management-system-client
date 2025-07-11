@@ -217,7 +217,7 @@ const WorkSheet = () => {
 
       {/* Modal */}
       <dialog id="my_modal_1" className="modal">
-        <div className="modal-box max-w-xl md:h-[200px] h-[400px] relative">
+        <div className="modal-box max-w-xl md:h-[200px] h-[250px] relative">
           <form onSubmit={handleUpdate}>
             <div className="flex gap-2 flex-col md:flex-row">
               <select
@@ -226,7 +226,7 @@ const WorkSheet = () => {
                 onChange={(e) =>
                   setUpdateItem({ ...updateItem, task: e.target.value })
                 }
-                className="border md:w-[150px] rounded px-2 py-1"
+                className="border md:w-[170px] rounded px-2 py-1"
               >
                 <option value="">Select Task</option>
                 <option value="Sales">Sales</option>
@@ -241,13 +241,13 @@ const WorkSheet = () => {
                 type="number"
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Hours Worked"
-                className="border md:w-[150px] rounded px-2 py-1"
+                className="border md:w-[170px] rounded px-2 py-1"
               />
 
               <DatePicker
                 selected={editDate}
                 onChange={(date) => setEditDate(date)}
-                className="border md:w-[150px] w-full rounded px-2 py-1"
+                className="border md:w-[170px] w-full rounded px-2 py-1"
                 dateFormat="yyyy-MM-dd"
               />
             </div>

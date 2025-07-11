@@ -8,6 +8,8 @@ const Banner = ({ slides }) => {
   return (
     <div>
       <Swiper
+      effect="fade"
+      speed={600}
         autoplay={{ delay: 3000 }}
         modules={[Autoplay]}
         loop={true}

@@ -104,6 +104,8 @@ const TestimonialsSlider = () => {
           What Our Users Say
         </h2>
         <Swiper
+        effect="fade"
+        speed={700}
           autoplay={{ delay: 2000 }}
           modules={[Autoplay]}
           loop={true}

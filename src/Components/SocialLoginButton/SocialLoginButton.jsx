@@ -4,38 +4,48 @@ import useAuth from "../../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import { postEmployeeData } from "../../Api/PostEmployeeData";
+import Swal from "sweetalert2";
+import Loader from "../../Shared/Loader/Loader";
 
 const SocialLoginButton = () => {
-  const { signInWithGoogle } = useAuth();
+  const { signInWithGoogle, loading, setLoading, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || "/";
-  const handleGoogleLogin = () => {
-    signInWithGoogle()
-      .then(async (res) => {
-        const data = res.user;
 
-        const employeeData = {
-          bank_account_no: 101010101010101,
-          designation: "Sales Assistant",
-          email: data?.email,
-          name: data?.displayName,
-          photo: data?.photoURL,
-          role: "Employee",
-          salary: 1000000,
-          status: "unVerified",
-          created_at: new Date().toISOString(),
-          last_log_in: new Date().toISOString(),
-        };
+  if (loading) return <Loader />;
 
-        const result = await postEmployeeData(employeeData);
-        console.log(result);
-        navigate(from);
-      })
-      .catch((error) => {
-        toast.error(error.message);
+  const handleGoogleLogin = async () => {
+    try {
+      await signInWithGoogle();
+      navigate(from);
+
+      Swal.fire({
+        title: "Registration Successful",
+        icon: "success",
+        draggable: true,
       });
-    console.log("Google login clicked");
+
+      const employeeData = {
+        bank_account_no: 101010101010101,
+        designation: "Sales Assistant",
+        email: user?.email,
+        name: user?.displayName,
+        photo: user?.photoURL,
+        role: "Employee",
+        salary: 1000000,
+        status: "unVerified",
+        created_at: new Date().toISOString(),
+        last_log_in: new Date().toISOString(),
+      };
+
+      const result = await postEmployeeData(employeeData);
+      console.log(result);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <div className="mt-6 text-center">

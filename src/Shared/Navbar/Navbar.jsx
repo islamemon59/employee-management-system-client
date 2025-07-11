@@ -18,7 +18,7 @@ const Navbar = () => {
       });
   };
 
-  if (loading) return <Loader/>
+  if (loading) return <Loader />;
   return (
     <>
       {/*<!-- Top bar --> */}
@@ -172,8 +172,16 @@ const Navbar = () => {
               className="flex items-center gap-2 whitespace-nowrap py-3 text-lg focus:outline-none lg:flex-1"
               href="javascript:void(0)"
             >
-              <img className="w-46 sm:block hidden" src="https://i.ibb.co/ycgk60M4/Screenshot-2025-07-11-200146-removebg-preview.png" alt="logo" />
-              <img className="w-12 sm:hidden block" src="https://i.ibb.co/RTg7XXGb/Screenshot-2025-07-11-200146-removebg-preview.png" alt="logo" />
+              <img
+                className="w-46 sm:block hidden"
+                src="https://i.ibb.co/ycgk60M4/Screenshot-2025-07-11-200146-removebg-preview.png"
+                alt="logo"
+              />
+              <img
+                className="w-12 sm:hidden block"
+                src="https://i.ibb.co/RTg7XXGb/Screenshot-2025-07-11-200146-removebg-preview.png"
+                alt="logo"
+              />
             </a>
             <NavbarLinks isToggleOpen={isToggleOpen} />
 
@@ -192,17 +200,21 @@ const Navbar = () => {
                       />
                     </div>
                   </div>
-                  <ul
+                  <div
                     tabIndex={0}
                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
                   >
-                    <li
+                    <div className="text-black text-center space-y-1">
+                      <h2 className="text-xl font-bold">{user?.displayName}</h2>
+                      <p className="font-semibold">{user?.email}</p>
+                    </div>
+                    <button
                       onClick={handleLogout}
-                      className="py-2 px-2 font-semibold bg-emerald-500 rounded-md text-white"
+                      className="py-2 px-2 font-semibold bg-emerald-500 rounded-md text-white mt-2"
                     >
                       Logout
-                    </li>
-                  </ul>
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <>

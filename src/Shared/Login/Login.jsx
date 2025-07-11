@@ -4,9 +4,11 @@ import SocialLoginButton from "../../Components/SocialLoginButton/SocialLoginBut
 import useAuth from "../../Hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+import Loader from "../Loader/Loader";
 
 const Login = () => {
-  const { signInUser } = useAuth();
+  const { signInUser, setLoading, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || "/";
@@ -16,16 +18,24 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  if(loading) return <Loader/>
+
+  const onSubmit = async (data) => {
     console.log("Form Data:", data);
 
-    signInUser(data.email, data.password)
-      .then(() => {
-        navigate(from);
-      })
-      .catch((error) => {
-        toast.error(error.message);
+    try {
+      await signInUser(data.email, data.password);
+      Swal.fire({
+        title: "Successfully Login",
+        icon: "success",
+        draggable: true,
       });
+      navigate(from);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,7 +75,7 @@ const Login = () => {
           type="submit"
           className="w-full bg-emerald-500 text-white py-2 rounded hover:bg-emerald-600"
         >
-          Login
+          {loading ? "Logging in..." : "Login"}
         </button>
       </form>
       <Link to="/register" className="font-semibold text-sm mt-1">

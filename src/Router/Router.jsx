@@ -15,6 +15,7 @@ import PrivateRoute from "../Private/PrivateRoute";
 import EmployeePaymentHistory from "../Pages/Dashboard/PaymentHistory/EmployeePaymentHistory";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
+import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,14 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        path: "dashboard",
+        element: (
+          <PrivateRoute>
+            <DashboardHome/>
+          </PrivateRoute>
+        ),
+      },
       {
         path: "/dashboard/workSheet",
         element: (
