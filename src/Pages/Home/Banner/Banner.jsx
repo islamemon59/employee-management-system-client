@@ -24,7 +24,7 @@ const Banner = ({ slides }) => {
                 />
               </div>
               <div className=" p-4 flex-1">
-                <h2 className="text-5xl md:text-6xl text-start text-emerald-500 md:leading-17 leading-10 font-extrabold">
+                <h2 className="text-4xl md:text-6xl text-start text-emerald-500 md:leading-17 leading-10 font-extrabold">
                   {slide.title}
                 </h2>
                 <p className="mt-2 text-xl font-semibold">{slide.subtitle}</p>

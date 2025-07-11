@@ -14,6 +14,7 @@ import Forbidden from "../Components/Forbidden/Forbidden";
 import PrivateRoute from "../Private/PrivateRoute";
 import EmployeePaymentHistory from "../Pages/Dashboard/PaymentHistory/EmployeePaymentHistory";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import ErrorPage from "../Components/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -117,4 +118,8 @@ export const router = createBrowserRouter([
     path: "/forbidden",
     Component: Forbidden,
   },
+  {
+    path: "*",
+    Component: ErrorPage,
+  }
 ]);

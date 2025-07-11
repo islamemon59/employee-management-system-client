@@ -174,7 +174,8 @@ const Navbar = () => {
               className="flex items-center gap-2 whitespace-nowrap py-3 text-lg focus:outline-none lg:flex-1"
               href="javascript:void(0)"
             >
-              <span className="md:block hidden">Brand</span>
+              <img className="w-46 sm:block hidden" src="https://i.ibb.co/ycgk60M4/Screenshot-2025-07-11-200146-removebg-preview.png" alt="logo" />
+              <img className="w-12 sm:hidden block" src="https://i.ibb.co/RTg7XXGb/Screenshot-2025-07-11-200146-removebg-preview.png" alt="logo" />
             </a>
             <NavbarLinks isToggleOpen={isToggleOpen} />
 

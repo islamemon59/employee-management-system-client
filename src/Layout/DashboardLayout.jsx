@@ -59,12 +59,12 @@ const DashboardLayout = () => {
       <aside
         id="nav-menu-5"
         aria-label="Side navigation"
-        className={`fixed top-0 bottom-0 left-0 z-40 flex w-72 flex-col border-r border-r-slate-200 bg-white transition-transform lg:translate-x-0 ${
-          isSideNavOpen ? "translate-x-0" : " -translate-x-full"
+        className={`fixed top-0 bottom-0 left-0 z-40 flex w-72 flex-col border-r border-r-slate-200 bg-emerald-500 transition-transform  ${
+          isSideNavOpen ? "translate-x-0" : " -translate-x-full lg:translate-x-0"
         }`}
       >
 
-        <button onClick={() => setIsSideNavOpen(!isSideNavOpen)} className="absolute top-3 right-3"><MdClose size={24} className="text-gray-600 hover:text-black cursor-pointer" /></button>
+        <button onClick={() => setIsSideNavOpen(!isSideNavOpen)} className="absolute top-3 right-3"><MdClose size={24} className="text-white hover:text-black cursor-pointer" /></button>
         <div className="flex flex-col items-center gap-4 border-b border-slate-200 p-6">
           <div className="shrink-0">
             <a
@@ -85,17 +85,17 @@ const DashboardLayout = () => {
             </a>
           </div>
           <div className="flex min-h-[2rem] w-full min-w-0 flex-col items-start justify-center gap-0 text-center">
-            <h4 className="w-full truncate text-base text-slate-700">
+            <h4 className="w-full truncate text-base text-white">
               {user?.displayName}
             </h4>
-            <p className="w-full truncate text-sm text-slate-500">
+            <p className="w-full truncate text-sm text-white">
               {user?.email}
             </p>
           </div>
         </div>
         <nav
           aria-label="side navigation"
-          className="flex-1 divide-y divide-slate-100 overflow-auto"
+          className="flex-1 divide-y divide-emerald-100 overflow-auto"
         >
           <div>
             <DashboardNavLinks />
@@ -105,12 +105,10 @@ const DashboardLayout = () => {
         <footer className="border-t border-slate-200 p-3">
           <button
             onClick={handleLogOut}
-            className="flex items-center gap-2 rounded p-3 text-black transition-colors hover:text-emerald-600 "
+            className="flex items-center font-bold gap-2 rounded p-3 text-white transition-colors hover:text-black"
           >
             <BiLogOut size={24} />
-            <p className="flex w-full text-black hover:text-emerald-600 flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-lg font-medium">
               Logout
-            </p>
           </button>
         </footer>
       </aside>

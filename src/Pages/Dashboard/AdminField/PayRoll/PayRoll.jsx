@@ -41,22 +41,22 @@ const PayRoll = () => {
         <table className="min-w-full border border-collapse rounded border-slate-300">
           <thead className="bg-gray-50 uppercase font-semibold text-gray-700">
             <tr>
-              <th className="h-12 px-6 font-medium text-start border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+              <th className="h-12 px-6 text-start border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
                 Name
               </th>
-              <th className="h-12 px-6 font-medium text-start border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+              <th className="h-12 px-6 text-start border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
                 Salary
               </th>
-              <th className="h-12 px-6 font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+              <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
                 Month
               </th>
-              <th className="h-12 px-6 font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+              <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
                 Year
               </th>
-              <th className="h-12 px-6 font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+              <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
                 Payment
               </th>
-              <th className="h-12 px-6 font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+              <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
                 Payment Date
               </th>
             </tr>
