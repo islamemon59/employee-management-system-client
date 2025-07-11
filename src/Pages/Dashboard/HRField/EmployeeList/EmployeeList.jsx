@@ -37,6 +37,9 @@ const EmployeeList = () => {
   console.log(employees);
   return (
     <div className="space-y-6 max-w-6xl mx-auto mt-10">
+      <h1 className="text-3xl md:text-5xl font-bold text-center text-emerald-500 pb-6">
+        All Employee List
+      </h1>
       <div className="w-full overflow-x-auto">
         <table
           className="w-full text-left border border-collapse rounded sm:border-separate border-slate-200"
@@ -111,13 +114,17 @@ const EmployeeList = () => {
                 <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
                   {employee.salary}
                 </td>
-                <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 disabled:cursor-not-allowed">
-                  <button onClick={() => handlePayRequest(employee)}>
+                <td className="h-12 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 disabled:cursor-not-allowed">
+                  <button
+                  className="h-full w-full flex justify-center items-center disabled:cursor-not-allowed"
+                    disabled={employee.status === "unverified"}
+                    onClick={() => handlePayRequest(employee)}
+                  >
                     <FaMoneyCheckAlt size={22} color="#10B981" />
                   </button>
                 </td>
                 <td className="h-12 px-6 transition flex justify-center items-center duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
-                  <Link to={`/dashboard/employeeDetails/${employee._id}`} >
+                  <Link to={`/dashboard/employeeDetails/${employee._id}`}>
                     <AiOutlineEye size={22} color="#3B82F6" />
                   </Link>
                 </td>

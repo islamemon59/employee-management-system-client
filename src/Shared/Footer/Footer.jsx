@@ -8,9 +8,9 @@ const Footer = () => {
         {/*    <!-- Main footer --> */}
         <div className="border-t border-emerald-600 bg-emerald-500 pb-12 pt-16 text-sm">
           <div className="container mx-auto px-6">
-            <div className="grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12">
+            <div className=" flex justify-center md:flex-row flex-col">
               <nav
-                className="col-span-2 md:col-span-4 lg:col-span-3"
+                className=""
                 aria-labelledby="footer-header"
               >
                 <h3
@@ -25,7 +25,7 @@ const Footer = () => {
                       href="#"
                       className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
                     >
-                      Features
+                      Home
                     </a>
                   </li>
                   <li className="mb-2 leading-6">
@@ -33,7 +33,7 @@ const Footer = () => {
                       href="#"
                       className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
                     >
-                      Customers
+                      Dashboard
                     </a>
                   </li>
                   <li className="mb-2 leading-6">
@@ -41,170 +41,12 @@ const Footer = () => {
                       href="#"
                       className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
                     >
-                      Why us?
-                    </a>
-                  </li>
-                  <li className="mb-2 leading-6">
-                    <a
-                      href="#"
-                      className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
-                    >
-                      Pricing
+                      Contact Us
                     </a>
                   </li>
                 </ul>
               </nav>
-              <nav
-                className="col-span-2 md:col-span-4 lg:col-span-3"
-                aria-labelledby="footer-header"
-              >
-                <h3
-                  className="mb-6 text-base font-medium text-white"
-                  id="footer-header "
-                >
-                  Docs & help
-                </h3>
-                <ul>
-                  <li className="mb-2 leading-6">
-                    <a
-                      href="#"
-                      className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
-                    >
-                      Documentation
-                    </a>
-                  </li>
-                  <li className="mb-2 leading-6">
-                    <a
-                      href="#"
-                      className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
-                    >
-                      Training
-                    </a>
-                  </li>
-                  <li className="mb-2 leading-6">
-                    <a
-                      href="#"
-                      className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
-                    >
-                      System status
-                    </a>
-                  </li>
-                  <li className="mb-2 leading-6">
-                    <a
-                      href="#"
-                      className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
-                    >
-                      FAQ's
-                    </a>
-                  </li>
-                  <li className="mb-2 leading-6">
-                    <a
-                      href="#"
-                      className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
-                    >
-                      Help Center
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-              <nav
-                className="col-span-2 md:col-span-4 lg:col-span-3"
-                aria-labelledby="footer-header"
-              >
-                <h3
-                  className="mb-6 text-base font-medium text-white"
-                  id="footer-header"
-                >
-                  About us
-                </h3>
-                <ul>
-                  <li className="mb-2 leading-6">
-                    <a
-                      href="#"
-                      className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
-                    >
-                      About us
-                    </a>
-                  </li>
-                  <li className="mb-2 leading-6">
-                    <a
-                      href="#"
-                      className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
-                    >
-                      Careers
-                    </a>
-                  </li>
-                  <li className="mb-2 leading-6">
-                    <a
-                      href="#"
-                      className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
-                    >
-                      Leadership
-                    </a>
-                  </li>
-                  <li className="mb-2 leading-6">
-                    <a
-                      href="#"
-                      className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
-                    >
-                      Blog
-                    </a>
-                  </li>
-                  <li className="mb-2 leading-6">
-                    <a
-                      href="#"
-                      className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
-                    >
-                      Events
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-              <nav
-                className="col-span-2 md:col-span-4 lg:col-span-3"
-                aria-labelledby="footer-header"
-              >
-                <h3
-                  className="mb-6 text-base font-medium text-white"
-                  id="footer-header"
-                >
-                  Get in touch
-                </h3>
-                <ul>
-                  <li className="mb-2 leading-6">
-                    <a
-                      href="#"
-                      className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
-                    >
-                      Contact
-                    </a>
-                  </li>
-                  <li className="mb-2 leading-6">
-                    <a
-                      href="#"
-                      className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
-                    >
-                      Support
-                    </a>
-                  </li>
-                  <li className="mb-2 leading-6">
-                    <a
-                      href="#"
-                      className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
-                    >
-                      Partners
-                    </a>
-                  </li>
-                  <li className="mb-2 leading-6">
-                    <a
-                      href="#"
-                      className="transition-colors duration-300 hover:text-emerald-100 focus:text-emerald-50"
-                    >
-                      Join research
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+
             </div>
           </div>
         </div>

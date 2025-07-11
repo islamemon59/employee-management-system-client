@@ -85,11 +85,11 @@ const PayRoll = () => {
                   </td>
                   <td
                     onClick={() => handlePay(employee)}
-                    className="h-12 px-6 justify-items-center transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 cursor-pointer"
+                    className="h-12 justify-items-center transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 cursor-pointer"
                   >
                     <button
                       disabled={employee.paidAt}
-                      className="flex justify-center items-center justify-items-center gap-1 disabled:cursor-not-allowed"
+                      className="flex justify-center items-center justify-items-center h-full w-full gap-1 disabled:cursor-not-allowed"
                     >
                       <FaCreditCard size={22} className="text-emerald-500" />
                       <span className="font-bold text-emerald-500">Pay</span>

@@ -24,8 +24,8 @@ const Navbar = () => {
   return (
     <>
       {/*<!-- Top bar --> */}
-      <div className="border-b border-slate-200 bg-emerald-500">
-        <div className="mx-auto grid w-full max-w-full grid-cols-4 gap-6 px-6 py-2 text-sm text-black md:grid-cols-8 lg:max-w-5xl lg:grid-cols-12 xl:max-w-7xl 2xl:max-w-[96rem]">
+      <div className="border-b border-emerald-700 bg-emerald-600">
+        <div className="mx-auto grid w-full max-w-full grid-cols-4 gap-6 px-6 py-2 text-sm text-white md:grid-cols-8 lg:max-w-5xl lg:grid-cols-12 xl:max-w-7xl 2xl:max-w-[96rem]">
           <div className="col-span-2 items-center md:col-span-4 lg:col-span-6">
             <a
               href="javascript:void(0)"
@@ -133,11 +133,11 @@ const Navbar = () => {
       </div>
 
       {/*<!-- Header --> */}
-      <header className="sticky top-0 left-0 z-20 w-full border-b border-slate-200 bg-white/90 shadow-lg shadow-slate-700/5 after:absolute after:left-0 after:top-full after:z-10 after:block after:h-px after:w-full after:bg-slate-200 lg:border-slate-200 lg:backdrop-blur-sm lg:after:hidden">
+      <header className="sticky top-0 left-0 z-20 w-full border-b bg-emerald-500 border-slate-200 shadow-lg shadow-slate-700/5 after:absolute after:left-0 after:top-full after:z-10 after:block after:h-px after:w-full after:bg-emerald-700 lg:emerald-slate-700 lg:backdrop-blur-sm lg:after:hidden">
         <div className="relative mx-auto max-w-full px-6 lg:max-w-5xl xl:max-w-7xl 2xl:max-w-[96rem]">
           <nav
             aria-label="main navigation"
-            className="flex h-[5.5rem] items-stretch justify-between font-medium text-slate-700"
+            className="flex h-[5.5rem] items-stretch justify-between font-semibold text-white"
             role="navigation"
           >
             <button
@@ -186,7 +186,7 @@ const Navbar = () => {
                     role="button"
                     className="btn btn-ghost btn-circle avatar"
                   >
-                    <div className="w-10 border-2 border-emerald-500 rounded-full">
+                    <div className="w-10 border-2 border-white rounded-full">
                       <img
                         alt="Tailwind CSS Navbar component"
                         src={user?.photoURL}
