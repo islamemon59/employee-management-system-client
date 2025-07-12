@@ -4,10 +4,12 @@ import EmployeeDashboard from "./EmployeeDashboard/EmployeeDashboard";
 import HrDashboard from "./HrDashboard/HrDashboard";
 import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import UnauthorizedAccess from "../../../Components/UnauthorizedAccess/UnauthorizedAccess";
+import Loader from "../../../Shared/Loader/Loader";
 
 const DashboardHome = () => {
-  const { role } = useUserRole();
-
+  const { role, isLoading } = useUserRole();
+  if (isLoading) return <Loader />;
+  console.log(role);
   if (role === "Employee") return <EmployeeDashboard />;
   if (role === "HR") return <HrDashboard />;
   if (role === "Admin") return <AdminDashboard />;

@@ -6,10 +6,14 @@ import Loader from "../../../../Shared/Loader/Loader";
 import Swal from "sweetalert2";
 import { FiGrid, FiList } from "react-icons/fi";
 import EmployeeCardView from "./EmployeeCardView";
+import IncreaseSalaryModal from "./IncreaseSalaryModal/IncreaseSalaryModal";
+import { FaMoneyCheckAlt } from "react-icons/fa";
 
 const AllEmployeeList = () => {
   const axiosSecure = useAxiosSecure();
   const [toggle, setToggle] = useState(false);
+  const [increaseSalary, setIncreaseSalary] = useState("");
+  const [updateId, setUpdateId] = useState("");
   console.log(toggle);
 
   const {
@@ -61,6 +65,13 @@ const AllEmployeeList = () => {
     });
   };
 
+  const handleSalary = (salary, id) => {
+    setIncreaseSalary(salary);
+    setUpdateId(id);
+    console.log(salary, id);
+    document.getElementById("my_modal_1").showModal();
+  };
+
   if (isLoading) return <Loader />;
 
   return (
@@ -106,6 +117,9 @@ const AllEmployeeList = () => {
                   Make HR
                 </th>
                 <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                  Increase Salary
+                </th>
+                <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
                   Fire
                 </th>
               </tr>
@@ -139,6 +153,15 @@ const AllEmployeeList = () => {
                       )}
                     </td>
                     <td
+                      onClick={() =>
+                        handleSalary(employee.salary, employee._id)
+                      }
+                      className="h-12 px-6 flex justify-center items-center gap-1 cursor-pointer transition duration-300 text-center border-t border-l first:border-l-0 text-emerald-500 border-slate-200 stroke-slate-500 "
+                    >
+                      <FaMoneyCheckAlt size={18} />
+                      Increase Salary
+                    </td>
+                    <td
                       onClick={() => handleFired(employee._id)}
                       className="h-12 px-6 text-center transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 cursor-pointer"
                     >
@@ -157,6 +180,11 @@ const AllEmployeeList = () => {
           </table>
         </div>
       )}
+      <IncreaseSalaryModal
+        increaseSalary={increaseSalary}
+        updateId={updateId}
+        refetch={refetch}
+      />
     </div>
   );
 };
