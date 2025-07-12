@@ -10,6 +10,7 @@ const ContactUs = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
+    data.createdAt = new Date().toISOString()
     try {
       // POST to your backend route (example: /api/contact-messages)
       await axiosSecure.post("api/contact-messages", data);

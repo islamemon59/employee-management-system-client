@@ -1,5 +1,5 @@
 import React from "react";
-import { MdOutlineHistory, MdOutlinePlaylistAddCheck } from "react-icons/md";
+import { MdOutlineHistory, MdOutlineMarkChatRead, MdOutlinePlaylistAddCheck } from "react-icons/md";
 import { NavLink } from "react-router";
 import { MdAssignment } from "react-icons/md";
 import { FiHome, FiUsers } from "react-icons/fi";
@@ -124,6 +124,21 @@ const DashboardNavLinks = () => {
               <FaMoneyCheckAlt className="text-xl" />
               <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
                 Pay Roll
+              </div>
+            </NavLink>
+          </li>
+          <li className="px-3">
+            <NavLink
+              to="/dashboard/visitor"
+              className={({ isActive }) =>
+                `${
+                  isActive && "bg-emerald-700"
+                } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
+              }
+            >
+              <MdOutlineMarkChatRead className="text-xl" />
+              <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
+               Visitor Message
               </div>
             </NavLink>
           </li>

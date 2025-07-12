@@ -16,6 +16,7 @@ import EmployeePaymentHistory from "../Pages/Dashboard/PaymentHistory/EmployeePa
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
+import VisitorMessage from "../Pages/Dashboard/AdminField/VisitorMessage/VisitorMessage";
 
 export const router = createBrowserRouter([
   {
@@ -118,6 +119,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <PayRoll />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/visitor",
+        element: (
+          <PrivateRoute>
+            <VisitorMessage/>
           </PrivateRoute>
         ),
       },
