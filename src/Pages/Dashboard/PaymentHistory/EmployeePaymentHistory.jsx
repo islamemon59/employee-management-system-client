@@ -17,22 +17,15 @@ const EmployeePaymentHistory = () => {
       const { data } = await axiosSecure.get(
         `employee/payment/data?email=${email}&page=${currentPage}&size=${itemsParPage}`
       );
-      console.log(data);
       setDataCount(data.document);
       setPayments(data.result);
     };
     fetchFunction();
   }, [axiosSecure, itemsParPage, currentPage, email]);
 
-  console.log(dataCount);
-
   const count = dataCount;
-  console.log(count);
-  // const itemsPerPage = 5;
   const numberOfPages = Math.ceil(count / itemsParPage);
-  console.log(numberOfPages);
   const pages = [...Array(numberOfPages).keys()];
-  console.log(pages);
 
   const handleItemsParPage = (e) => {
     const value = parseInt(e.target.value);

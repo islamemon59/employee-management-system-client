@@ -10,7 +10,6 @@ import PayModal from "../PayModal/PayModal";
 import Loader from "../../../../Shared/Loader/Loader";
 
 const EmployeeList = () => {
-  //   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [employeeData, setEmployeeData] = useState(null);
   const { data: employees = [], refetch, isLoading } = useQuery({

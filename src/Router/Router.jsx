@@ -17,6 +17,9 @@ import ContactUs from "../Pages/ContactUs/ContactUs";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 import VisitorMessage from "../Pages/Dashboard/AdminField/VisitorMessage/VisitorMessage";
+import EmployeeRoute from "../Private/EmployeeRoute";
+import HrRoute from "../Private/HrRoute";
+import AdminRoute from "../Private/AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -53,81 +56,81 @@ export const router = createBrowserRouter([
         path: "dashboard",
         element: (
           <PrivateRoute>
-            <DashboardHome/>
+            <DashboardHome />
           </PrivateRoute>
         ),
       },
       {
         path: "/dashboard/workSheet",
         element: (
-          <PrivateRoute>
+          <EmployeeRoute>
             <WorkSheet></WorkSheet>
-          </PrivateRoute>
+          </EmployeeRoute>
         ),
       },
       {
         path: "/dashboard/paymentHistory",
         element: (
-          <PrivateRoute>
-            <EmployeePaymentHistory/>
-          </PrivateRoute>
+          <EmployeeRoute>
+            <EmployeePaymentHistory />
+          </EmployeeRoute>
         ),
       },
       {
         path: "/dashboard/employeeList",
         element: (
-          <PrivateRoute>
+          <HrRoute>
             <EmployeeList />
-          </PrivateRoute>
+          </HrRoute>
         ),
       },
       {
         path: "/dashboard/employeeDetails/:id",
         element: (
-          <PrivateRoute>
-            <EmployeeDetails/>
-          </PrivateRoute>
+          <HrRoute>
+            <EmployeeDetails />
+          </HrRoute>
         ),
       },
       {
         path: "/dashboard/employeeDetails/:id",
         element: (
-          <PrivateRoute>
+          <HrRoute>
             <EmployeeList />
-          </PrivateRoute>
+          </HrRoute>
         ),
       },
       {
         path: "/dashboard/progressList",
         element: (
-          <PrivateRoute>
+          <HrRoute>
             <ProgressList />
-          </PrivateRoute>
+          </HrRoute>
         ),
       },
       {
         path: "/dashboard/allEmployeeList",
         element: (
-          <PrivateRoute>
+          <AdminRoute>
             <AllEmployeeList />
-          </PrivateRoute>
+          </AdminRoute>
         ),
       },
       {
         path: "/dashboard/payRoll",
         Component: PayRoll,
         element: (
-          <PrivateRoute>
+          <AdminRoute>
             <PayRoll />
-          </PrivateRoute>
+          </AdminRoute>
         ),
       },
       {
         path: "/dashboard/visitor",
         element: (
-          <PrivateRoute>
-            <VisitorMessage/>
-          </PrivateRoute>
+          <AdminRoute>
+            <VisitorMessage />
+          </AdminRoute>
         ),
       },
     ],
@@ -139,5 +142,5 @@ export const router = createBrowserRouter([
   {
     path: "*",
     Component: ErrorPage,
-  }
+  },
 ]);
