@@ -5,7 +5,7 @@ import Lottie from "lottie-react";
 
 const HomeIntroSection = () => {
   return (
-    <section className="max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <section className="max-w-7xl mx-auto px-4 pb-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       {/* Left Side - Text */}
       <div className="space-y-6">
         <h2 className="text-4xl font-extrabold text-emerald-500 leading-tight">
