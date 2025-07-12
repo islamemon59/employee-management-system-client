@@ -18,11 +18,9 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  if(loading) return <Loader/>
+  if (loading) return <Loader />;
 
   const onSubmit = async (data) => {
-    console.log("Form Data:", data);
-
     try {
       await signInUser(data.email, data.password);
       Swal.fire({
@@ -46,9 +44,10 @@ const Login = () => {
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
+          <label className="block mb-1 font-medium text-gray-700">Email</label>
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Enter your email"
             className="w-full border border-gray-400 px-3 py-2 rounded"
             {...register("email", { required: "Email is required" })}
           />
@@ -58,16 +57,15 @@ const Login = () => {
         </div>
 
         <div>
+          <label className="block mb-1 font-medium text-gray-700">Password</label>
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Enter your password"
             className="w-full border border-gray-400 px-3 py-2 rounded"
             {...register("password", { required: "Password is required" })}
           />
           {errors.password && (
-            <p className="text-red-500 text-sm mt-1">
-              {errors.password.message}
-            </p>
+            <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
           )}
         </div>
 
@@ -78,14 +76,13 @@ const Login = () => {
           {loading ? "Logging in..." : "Login"}
         </button>
       </form>
-      <Link to="/register" className="font-semibold text-sm mt-1">
-        Don't have an account{" "}
-        <span className="text-indigo-700 hover:border-b-1 cursor-pointer">
-          Register
-        </span>
+
+      <Link to="/register" className="font-semibold text-sm mt-3 block text-center">
+        Don't have an account?{" "}
+        <span className="text-indigo-700 hover:underline">Register</span>
       </Link>
 
-      <SocialLoginButton></SocialLoginButton>
+      <SocialLoginButton />
     </div>
   );
 };

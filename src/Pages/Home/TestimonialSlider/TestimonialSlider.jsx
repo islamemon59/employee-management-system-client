@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/pagination";
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
@@ -100,33 +101,48 @@ const TestimonialsSlider = () => {
   return (
     <section className="py-12 bg-white">
       <div className="max-w-4xl mx-auto px-4 text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-emerald-500 mb-6">
+        <motion.h2
+          className="text-3xl md:text-4xl font-extrabold text-emerald-500 mb-6"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           What Our Users Say
-        </h2>
+        </motion.h2>
+
         <Swiper
-        effect="fade"
-        speed={700}
-          autoplay={{ delay: 2000 }}
+          effect="fade"
+          speed={700}
+          autoplay={{ delay: 2500 }}
           modules={[Autoplay]}
           loop={true}
           className="py-6"
         >
-          {testimonials.map((testimonial) => (
+          {testimonials.map((testimonial, index) => (
             <SwiperSlide key={testimonial.id}>
-              <div className="flex flex-col items-center h-[250px]">
-                <img
+              <motion.div
+                className="flex flex-col items-center h-[250px]"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+              >
+                <motion.img
                   src={testimonial.photo}
                   alt={testimonial.name}
-                  className="w-20 h-20 rounded-full mb-4 object-cover"
+                  className="w-20 h-20 rounded-full mb-4 object-cover shadow"
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    duration: 3,
+                  }}
                 />
-                <p className="text-black mb-3 max-w-2xl">
-                  {testimonial.feedback}
-                </p>
+                <p className="text-black mb-3 max-w-2xl">{testimonial.feedback}</p>
                 <h4 className="font-bold text-lg">{testimonial.name}</h4>
-                <span className="text-sm text-black">
-                  {testimonial.title}
-                </span>
-              </div>
+                <span className="text-sm text-black">{testimonial.title}</span>
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
