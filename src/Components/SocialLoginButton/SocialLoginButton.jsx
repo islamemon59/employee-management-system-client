@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import Loader from "../../Shared/Loader/Loader";
 
 const SocialLoginButton = () => {
-  const { signInWithGoogle, loading, setLoading, user } = useAuth();
+  const { signInWithGoogle, loading, setLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || "/";
@@ -17,14 +17,8 @@ const SocialLoginButton = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      await signInWithGoogle();
-      navigate(from);
-
-      Swal.fire({
-        title: "Registration Successful",
-        icon: "success",
-        draggable: true,
-      });
+      const res = await signInWithGoogle();
+      const user = res.user;
 
       const employeeData = {
         bank_account_no: 101010101010101,
@@ -34,13 +28,20 @@ const SocialLoginButton = () => {
         photo: user?.photoURL,
         role: "Employee",
         salary: 1000000,
-        status: "unVerified",
+        status: "unverified",
         created_at: new Date().toISOString(),
         last_log_in: new Date().toISOString(),
       };
 
-      const result = await postEmployeeData(employeeData);
-      console.log(result);
+      await postEmployeeData(employeeData);
+
+      navigate(from);
+
+      Swal.fire({
+        title: "Registration Successful",
+        icon: "success",
+        draggable: true,
+      });
     } catch (error) {
       toast.error(error.message);
     } finally {

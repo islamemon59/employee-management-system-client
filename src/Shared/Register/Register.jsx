@@ -24,27 +24,13 @@ const Register = () => {
   const location = useLocation();
   const from = location?.state || "/";
 
-  if(loading) return <Loader/>
+  if (loading) return <Loader />;
 
   const onSubmit = async (data) => {
     try {
       const image = await uploadImage(data?.photo[0]);
       await createUser(data?.email, data?.password);
       await updateUserProfile(data.name, image);
-
-      Swal.fire({
-        title: "Registration Successful",
-        icon: "success",
-        draggable: true,
-      });
-      navigate(from);
-
-      setUser({
-        ...user,
-        displayName: data?.name,
-        photoURL: image,
-        email: data?.email,
-      });
 
       const employeeData = {
         name: data.name,
@@ -61,6 +47,20 @@ const Register = () => {
       };
 
       await postEmployeeData(employeeData);
+      setUser({
+        ...user,
+        displayName: data?.name,
+        photoURL: image,
+        email: data?.email,
+      });
+      
+      Swal.fire({
+        title: "Registration Successful",
+        icon: "success",
+        draggable: true,
+      });
+      navigate(from);
+
     } catch (error) {
       toast.error(error?.message);
     } finally {

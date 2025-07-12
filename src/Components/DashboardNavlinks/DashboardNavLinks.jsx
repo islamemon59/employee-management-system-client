@@ -26,90 +26,109 @@ const DashboardNavLinks = () => {
           </div>
         </NavLink>
       </li>
-      <li className="px-3">
-        <NavLink
-          to="/dashboard/workSheet"
-          className={({ isActive }) =>
-            `${
-              isActive && "bg-emerald-700"
-            } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
-          }
-        >
-          <MdAssignment className="text-xl" />
-          <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
-            Work Sheet
-          </div>
-        </NavLink>
-      </li>
-      <li className="px-3">
-        <NavLink
-          to="/dashboard/paymentHistory"
-          className={({ isActive }) =>
-            `${
-              isActive && "bg-emerald-700"
-            } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
-          }
-        >
-          <MdOutlineHistory className="text-xl" />
-          <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
-            Payment History
-          </div>
-        </NavLink>
-      </li>
-      <li className="px-3">
-        <NavLink
-          to="/dashboard/employeeList"
-          className={({ isActive }) =>
-            `${
-              isActive && "bg-emerald-700"
-            } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
-          }
-        >
-          <FiUsers className="text-xl" />
-          <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
-            All Employee List
-          </div>
-        </NavLink>
-        <NavLink
-          to="/dashboard/progressList"
-          className={({ isActive }) =>
-            `${
-              isActive && "bg-emerald-700"
-            } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
-          }
-        >
-          <MdOutlinePlaylistAddCheck className="text-xl" />
-          <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
-            Progress List
-          </div>
-        </NavLink>
-        <NavLink
-          to="/dashboard/allEmployeeList"
-          className={({ isActive }) =>
-            `${
-              isActive && "bg-emerald-700"
-            } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
-          }
-        >
-          <FaUsers className="text-xl" />
-          <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
-            All Employee List
-          </div>
-        </NavLink>
-        <NavLink
-          to="/dashboard/payRoll"
-          className={({ isActive }) =>
-            `${
-              isActive && "bg-emerald-700"
-            } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
-          }
-        >
-          <FaMoneyCheckAlt className="text-xl" />
-          <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
-            Pay Roll
-          </div>
-        </NavLink>
-      </li>
+      {role === "Employee" && !isLoading && (
+        <>
+          <li className="px-3">
+            <NavLink
+              to="/dashboard/workSheet"
+              className={({ isActive }) =>
+                `${
+                  isActive && "bg-emerald-700"
+                } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
+              }
+            >
+              <MdAssignment className="text-xl" />
+              <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
+                Work Sheet
+              </div>
+            </NavLink>
+          </li>
+          <li className="px-3">
+            <NavLink
+              to="/dashboard/paymentHistory"
+              className={({ isActive }) =>
+                `${
+                  isActive && "bg-emerald-700"
+                } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
+              }
+            >
+              <MdOutlineHistory className="text-xl" />
+              <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
+                Payment History
+              </div>
+            </NavLink>
+          </li>
+        </>
+      )}
+      {role === "HR" && !isLoading && (
+        <>
+          <li className="px-3">
+            {" "}
+            <NavLink
+              to="/dashboard/employeeList"
+              className={({ isActive }) =>
+                `${
+                  isActive && "bg-emerald-700"
+                } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
+              }
+            >
+              <FiUsers className="text-xl" />
+              <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
+                All Employee List
+              </div>
+            </NavLink>
+          </li>
+          <li className="px-3">
+            <NavLink
+              to="/dashboard/progressList"
+              className={({ isActive }) =>
+                `${
+                  isActive && "bg-emerald-700"
+                } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
+              }
+            >
+              <MdOutlinePlaylistAddCheck className="text-xl" />
+              <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
+                Progress List
+              </div>
+            </NavLink>
+          </li>
+        </>
+      )}
+      {role === "Admin" && !isLoading && (
+        <>
+          <li className="px-3">
+            <NavLink
+              to="/dashboard/allEmployeeList"
+              className={({ isActive }) =>
+                `${
+                  isActive && "bg-emerald-700"
+                } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
+              }
+            >
+              <FaUsers className="text-xl" />
+              <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
+                All Employee List
+              </div>
+            </NavLink>
+          </li>
+          <li className="px-3">
+            <NavLink
+              to="/dashboard/payRoll"
+              className={({ isActive }) =>
+                `${
+                  isActive && "bg-emerald-700"
+                } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
+              }
+            >
+              <FaMoneyCheckAlt className="text-xl" />
+              <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
+                Pay Roll
+              </div>
+            </NavLink>
+          </li>
+        </>
+      )}
     </ul>
   );
 };
