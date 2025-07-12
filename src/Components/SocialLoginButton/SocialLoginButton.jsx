@@ -33,7 +33,7 @@ const SocialLoginButton = () => {
         last_log_in: new Date().toISOString(),
       };
 
-      await postEmployeeData(employeeData);
+      await postEmployeeData(employeeData, user?.accessToken);
 
       navigate(from);
 

@@ -1,10 +1,15 @@
 import axios from "axios";
 
-export const postEmployeeData = async (employeeData) => {
+export const postEmployeeData = async (employeeData, token) => {
   try {
     const { data } = await axios.post(
       `${import.meta.env.VITE_URL}employee-data`,
-      employeeData
+      employeeData,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
     );
     return data;
   } catch (error) {
