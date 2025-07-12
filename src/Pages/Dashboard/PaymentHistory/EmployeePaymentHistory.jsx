@@ -1,30 +1,62 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
-import Loader from "../../../Shared/Loader/Loader";
 
 const EmployeePaymentHistory = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const [payments, setPayments] = useState([]);
+  const [dataCount, setDataCount] = useState(0);
+  const [itemsParPage, setItemsParPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(0);
 
   const email = user?.email;
 
-  const { data: payments = [], isLoading } = useQuery({
-    queryKey: ["email", email],
-    queryFn: async () => {
+  useEffect(() => {
+    const fetchFunction = async () => {
       const { data } = await axiosSecure.get(
-        `employee/payment/data?email=${email}`
+        `employee/payment/data?email=${email}&page=${currentPage}&size=${itemsParPage}`
       );
-      return data;
-    },
-  });
+      console.log(data);
+      setDataCount(data.document);
+      setPayments(data.result);
+    };
+    fetchFunction();
+  }, [axiosSecure, itemsParPage, currentPage, email]);
 
-  if(isLoading) return <Loader/>
+  console.log(dataCount);
+
+  const count = dataCount;
+  console.log(count);
+  // const itemsPerPage = 5;
+  const numberOfPages = Math.ceil(count / itemsParPage);
+  console.log(numberOfPages);
+  const pages = [...Array(numberOfPages).keys()];
+  console.log(pages);
+
+  const handleItemsParPage = (e) => {
+    const value = parseInt(e.target.value);
+    setItemsParPage(value);
+    setCurrentPage(0);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <div className="max-w-3xl mx-auto space-y-4 mt-10">
-        <h1 className="text-3xl md:text-5xl font-bold text-center pb-6 text-emerald-500">Salary Payment History</h1>
+      <h1 className="text-3xl md:text-5xl font-bold text-center pb-6 text-emerald-500">
+        Salary Payment History
+      </h1>
       <div className="overflow-x-auto rounded shadow">
         <table className="min-w-full text-left text-black border border-collapse rounded sm:border-separate border-slate-200">
           <thead className="bg-gray-50 uppercase font-semibold text-gray-700">
@@ -70,6 +102,35 @@ const EmployeePaymentHistory = () => {
             )}
           </tbody>
         </table>
+      </div>
+      <div className="flex justify-center items-center gap-2">
+        <button
+          onClick={handlePrevPage}
+          className="p-3 rounded bg-emerald-500 hover:bg-emerald-600 text-white"
+        >
+          Prev
+        </button>
+        {pages.map((page) => (
+          <button
+            onClick={() => setCurrentPage(page)}
+            className={`${
+              currentPage === page && "border-2 border-black"
+            } p-3 rounded bg-emerald-500 hover:bg-emerald-600 text-white`}
+          >
+            {page + 1}
+          </button>
+        ))}
+        <button
+          onClick={handleNextPage}
+          className="p-3 rounded bg-emerald-500 hover:bg-emerald-600 text-white"
+        >
+          Next
+        </button>
+        <select value={itemsParPage} onChange={handleItemsParPage}>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+        </select>
       </div>
     </div>
   );
