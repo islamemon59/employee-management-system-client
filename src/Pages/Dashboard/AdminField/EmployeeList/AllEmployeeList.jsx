@@ -101,6 +101,7 @@ const AllEmployeeList = () => {
           employees={employees}
           handleMakeHr={handleMakeHr}
           handleFired={handleFired}
+          handleSalary={handleSalary}
         />
       ) : (
         <div className="overflow-x-auto">

@@ -24,6 +24,10 @@ const IncreaseSalaryModal = ({ increaseSalary, updateId, refetch }) => {
     }
   };
 
+  const handleCloseModal = () => {
+    document.getElementById("my_modal_1").close();
+  };
+
   return (
     <div>
       <dialog id="my_modal_1" className="modal">
@@ -48,9 +52,10 @@ const IncreaseSalaryModal = ({ increaseSalary, updateId, refetch }) => {
               <button type="submit" className="btn btn-success">
                 Update
               </button>
-              <form method="dialog">
-                <button className="btn">Close</button>
-              </form>
+
+              <button type="button" onClick={handleCloseModal} className="btn">
+                Close
+              </button>
             </div>
           </form>
         </div>
