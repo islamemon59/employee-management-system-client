@@ -29,7 +29,8 @@ const Register = () => {
   const onSubmit = async (data) => {
     try {
       const image = await uploadImage(data?.photo[0]);
-      await createUser(data?.email, data?.password);
+      const res = await createUser(data?.email, data?.password);
+      const userData = res.user;
       await updateUserProfile(data.name, image);
 
       const employeeData = {
@@ -46,7 +47,7 @@ const Register = () => {
         last_log_in: new Date().toISOString(),
       };
 
-      await postEmployeeData(employeeData);
+      await postEmployeeData(employeeData, userData?.accessToken);
       setUser({
         ...user,
         displayName: data?.name,
