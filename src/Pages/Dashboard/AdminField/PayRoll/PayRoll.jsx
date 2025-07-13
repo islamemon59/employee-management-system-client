@@ -6,10 +6,13 @@ import PaymentModal from "./PaymentModal/PaymentModal";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Loader from "../../../../Shared/Loader/Loader";
+import useTitle from "../../../../Hooks/useTitle";
 
 const stripePromise = loadStripe(import.meta.env.VITE_payment_key);
 
 const PayRoll = () => {
+  useTitle("Pay Roll - StaffHub");
+
   const axiosSecure = useAxiosSecure();
   const [payEmployee, setPayEmployee] = useState("");
 

@@ -14,8 +14,11 @@ import {
   YAxis,
 } from "recharts";
 import Loader from "../../../../Shared/Loader/Loader";
+import useTitle from "../../../../Hooks/useTitle";
 
 const EmployeeDetails = () => {
+  useTitle("Employee Details - StaffHub");
+
   const { id } = useParams();
   const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
   console.log(id);
@@ -60,7 +63,9 @@ const EmployeeDetails = () => {
             <h3 className="text-xl font-medium text-slate-700 dark:text-gray-100">
               {employee.name}
             </h3>
-            <p className="text-slate-400 dark:text-gray-400">{employee.designation}</p>
+            <p className="text-slate-800 dark:text-gray-400">
+              {employee.designation}
+            </p>
           </header>
         </div>
 
@@ -79,7 +84,9 @@ const EmployeeDetails = () => {
                 aria-labelledby="title-21 desc-21"
               >
                 <title id="title-21">Icon title</title>
-                <desc id="desc-21">A more detailed description of the icon</desc>
+                <desc id="desc-21">
+                  A more detailed description of the icon
+                </desc>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -104,25 +111,57 @@ const EmployeeDetails = () => {
               bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke={window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? "#444" : "#ccc"} />
+            <CartesianGrid
+              strokeDasharray="3 3"
+              stroke={
+                window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+                  ? "#444"
+                  : "#ccc"
+              }
+            />
             <XAxis
               dataKey="createdAt"
               tickFormatter={(_, index) => {
                 const item = employees[index];
                 return `${item.month} ${item.year}`;
               }}
-              stroke={window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? "#ddd" : "#000"}
+              stroke={
+                window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+                  ? "#ddd"
+                  : "#000"
+              }
             />
-            <YAxis stroke={window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? "#ddd" : "#000"} />
+            <YAxis
+              stroke={
+                window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+                  ? "#ddd"
+                  : "#000"
+              }
+            />
             <Tooltip
               contentStyle={{
-                backgroundColor: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? "#333" : "#fff",
-                color: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? "#eee" : "#000",
+                backgroundColor:
+                  window.matchMedia &&
+                  window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ? "#333"
+                    : "#fff",
+                color:
+                  window.matchMedia &&
+                  window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ? "#eee"
+                    : "#000",
               }}
             />
             <Legend
               wrapperStyle={{
-                color: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? "#eee" : "#000",
+                color:
+                  window.matchMedia &&
+                  window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ? "#eee"
+                    : "#000",
               }}
             />
             <Bar
@@ -131,7 +170,10 @@ const EmployeeDetails = () => {
               activeBar={<Rectangle fill="pink" stroke="blue" />}
             >
               {employees.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={colors[index % colors.length]}
+                />
               ))}
             </Bar>
           </BarChart>

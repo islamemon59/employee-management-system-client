@@ -10,8 +10,10 @@ import {
 import useUserRole from "../../../../Hooks/useUserRole";
 import useAuth from "../../../../Hooks/useAuth";
 import { employeesCountData } from "../../../../Api/CountOfEmployeeData";
+import useTitle from "../../../../Hooks/useTitle";
 
 const HrDashboard = () => {
+  useTitle("HR Dashboard - StaffHub");
   const { user } = useAuth();
   const { role } = useUserRole();
   const [employeesData, setEmployeesData] = useState({});

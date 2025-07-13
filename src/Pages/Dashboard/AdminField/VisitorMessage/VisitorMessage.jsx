@@ -2,8 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Loader from "../../../../Shared/Loader/Loader";
+import useTitle from "../../../../Hooks/useTitle";
 
 const VisitorMessage = () => {
+  useTitle("Visitor - StaffHub");
+
   const axiosSecure = useAxiosSecure();
 
   const {

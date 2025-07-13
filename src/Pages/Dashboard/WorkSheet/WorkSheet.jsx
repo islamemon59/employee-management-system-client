@@ -8,8 +8,10 @@ import toast from "react-hot-toast";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../Shared/Loader/Loader";
+import useTitle from "../../../Hooks/useTitle";
 
 const WorkSheet = () => {
+  useTitle("Work Sheet - StaffHub")
   const [updateItem, setUpdateItem] = useState({});
   const { register, handleSubmit, reset } = useForm();
   const [selectedDate, setSelectedDate] = useState(new Date());

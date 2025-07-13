@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Loader from "../../../../Shared/Loader/Loader";
+import useTitle from "../../../../Hooks/useTitle";
 
 const ProgressList = () => {
+  useTitle("Progress List - StaffHub");
+
   const axiosSecure = useAxiosSecure();
   const [selectedName, setSelectedName] = useState("");
   const [selectedMonth, setSelectedMonth] = useState("July");

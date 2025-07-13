@@ -13,8 +13,10 @@ import {
 import useAuth from "../../../../Hooks/useAuth";
 import useUserRole from "../../../../Hooks/useUserRole";
 import { employeesCountData } from "../../../../Api/CountOfEmployeeData";
+import useTitle from "../../../../Hooks/useTitle";
 
 const AdminDashboard = () => {
+  useTitle("Admin Dashboard - StaffHub");
   const { user } = useAuth();
   const { role } = useUserRole();
   const [employeesData, setEmployeesData] = useState({});

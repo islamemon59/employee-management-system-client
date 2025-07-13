@@ -8,8 +8,11 @@ import toast from "react-hot-toast";
 import { Link } from "react-router";
 import PayModal from "../PayModal/PayModal";
 import Loader from "../../../../Shared/Loader/Loader";
+import useTitle from "../../../../Hooks/useTitle";
 
 const EmployeeList = () => {
+  useTitle("Employee List - StaffHub");
+
   const axiosSecure = useAxiosSecure();
   const [employeeData, setEmployeeData] = useState(null);
   const { data: employees = [], refetch, isLoading } = useQuery({

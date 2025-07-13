@@ -8,8 +8,10 @@ import { FiGrid, FiList } from "react-icons/fi";
 import EmployeeCardView from "./EmployeeCardView";
 import IncreaseSalaryModal from "./IncreaseSalaryModal/IncreaseSalaryModal";
 import { FaMoneyCheckAlt } from "react-icons/fa";
+import useTitle from "../../../../Hooks/useTitle";
 
 const AllEmployeeList = () => {
+  useTitle("Employee List - StaffHub");
   const axiosSecure = useAxiosSecure();
   const [toggle, setToggle] = useState(false);
   const [increaseSalary, setIncreaseSalary] = useState("");

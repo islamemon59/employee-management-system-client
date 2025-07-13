@@ -4,8 +4,10 @@ import toast from "react-hot-toast";
 import { MdEmail, MdMessage, MdLocationOn } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useTitle from "../../Hooks/useTitle";
 
 const ContactUs = () => {
+  useTitle("Contact Us - StaffHub");
   const axiosSecure = useAxiosSecure();
   const { register, handleSubmit, reset } = useForm();
 

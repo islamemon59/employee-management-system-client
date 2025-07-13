@@ -6,8 +6,10 @@ import useAuth from "../../../../Hooks/useAuth";
 import useUserRole from "../../../../Hooks/useUserRole";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import useTitle from "../../../../Hooks/useTitle";
 
 const EmployeeDashboard = () => {
+  useTitle("Employee Dashboard - StaffHub");
   const { user } = useAuth();
   const { role } = useUserRole();
   const axiosSecure = useAxiosSecure();

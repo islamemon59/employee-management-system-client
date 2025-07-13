@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useTitle from "../../../Hooks/useTitle";
 
 const EmployeePaymentHistory = () => {
+  useTitle("Payment History - StaffHub");
+
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [payments, setPayments] = useState([]);
