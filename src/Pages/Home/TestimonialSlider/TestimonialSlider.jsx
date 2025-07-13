@@ -99,10 +99,10 @@ const testimonials = [
 
 const TestimonialsSlider = () => {
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-white dark:bg-gray-900">
       <div className="max-w-4xl mx-auto px-4 text-center">
         <motion.h2
-          className="text-3xl md:text-4xl font-extrabold text-emerald-500 mb-6"
+          className="text-3xl md:text-4xl font-extrabold text-emerald-500 dark:text-emerald-400 mb-6"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -139,9 +139,15 @@ const TestimonialsSlider = () => {
                     duration: 3,
                   }}
                 />
-                <p className="text-black mb-3 max-w-2xl">{testimonial.feedback}</p>
-                <h4 className="font-bold text-lg">{testimonial.name}</h4>
-                <span className="text-sm text-black">{testimonial.title}</span>
+                <p className="text-black dark:text-gray-200 mb-3 max-w-2xl">
+                  {testimonial.feedback}
+                </p>
+                <h4 className="font-bold text-lg text-gray-800 dark:text-gray-100">
+                  {testimonial.name}
+                </h4>
+                <span className="text-sm text-gray-600 dark:text-gray-400">
+                  {testimonial.title}
+                </span>
               </motion.div>
             </SwiperSlide>
           ))}

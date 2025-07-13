@@ -12,6 +12,7 @@ const EmployeeDashboard = () => {
   const { role } = useUserRole();
   const axiosSecure = useAxiosSecure();
   const [employeeWorkData, setEmployeeWorkData] = useState({});
+
   // Animation variants
   const cardVariant = {
     hidden: { opacity: 0, y: 30 },
@@ -25,22 +26,22 @@ const EmployeeDashboard = () => {
 
   const cards = [
     {
-      Icon: FaClipboardList, // shows a clipboard or task list
+      Icon: FaClipboardList,
       value: employeeWorkData?.totalTasks || 0,
       label: "Total Tasks Completed",
-      color: "text-blue-500",
+      color: "text-blue-500 dark:text-blue-400",
     },
     {
-      Icon: FaClock, // shows a clock, perfect for hours worked
+      Icon: FaClock,
       value: employeeWorkData?.totalHours || 0,
       label: "Total Hours Worked",
-      color: "text-yellow-500",
+      color: "text-yellow-500 dark:text-yellow-400",
     },
     {
-      Icon: FaBullhorn, // keep this or change if you like
+      Icon: FaBullhorn,
       value: 3,
       label: "Announcements",
-      color: "text-purple-500",
+      color: "text-purple-500 dark:text-purple-400",
     },
   ];
 
@@ -61,9 +62,9 @@ const EmployeeDashboard = () => {
   }, [works]);
 
   return (
-    <div className="max-w-7xl mx-auto p-6 space-y-8">
+    <div className="max-w-7xl mx-auto p-6 space-y-8 bg-white dark:bg-gray-900 min-h-screen">
       <motion.h1
-        className="text-3xl md:text-4xl font-extrabold text-emerald-500 text-center"
+        className="text-3xl md:text-4xl font-extrabold text-emerald-500 dark:text-emerald-400 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -84,7 +85,7 @@ const EmployeeDashboard = () => {
             key={index}
             variants={cardVariant}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="rounded bg-white p-6 shadow hover:shadow-md flex flex-col items-center text-center"
+            className="rounded bg-white dark:bg-gray-800 p-6 shadow hover:shadow-md flex flex-col items-center text-center"
           >
             {/* Animated icon */}
             <motion.div
@@ -98,53 +99,55 @@ const EmployeeDashboard = () => {
             >
               <item.Icon size={30} className={`${item.color} mb-2`} />
             </motion.div>
-            <p className="mt-1 text-3xl font-extrabold text-emerald-600">
+            <p className="mt-1 text-3xl font-extrabold text-emerald-600 dark:text-emerald-400">
               {item.value}
             </p>
-            <p className="text-gray-600 mt-1 text-sm">{item.label}</p>
+            <p className="text-gray-600 dark:text-gray-300 mt-1 text-sm">{item.label}</p>
           </motion.div>
         ))}
       </motion.section>
 
       {/* Recent Notices */}
       <motion.section
-        className="rounded bg-white p-6 shadow"
+        className="rounded bg-white dark:bg-gray-800 p-6 shadow"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <h2 className="mb-4 text-xl font-semibold text-gray-800">
+        <h2 className="mb-4 text-xl font-semibold text-gray-800 dark:text-gray-200">
           Recent Notices
         </h2>
-        <ul className="space-y-2 text-gray-700">
+        <ul className="space-y-2 text-gray-700 dark:text-gray-300">
           <li>• Team meeting on Friday at 10 AM</li>
           <li>• Submit monthly report by next week</li>
           <li>• HR updated company policy</li>
         </ul>
       </motion.section>
+
+      {/* Employee profile section */}
       <motion.section
-        className="rounded bg-white p-6 shadow flex flex-col md:flex-row items-center gap-6"
+        className="rounded bg-white dark:bg-gray-800 p-6 shadow flex flex-col md:flex-row items-center gap-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <img
-          src={user?.photoURL} // replace with logged-in user's avatar
-          alt="Admin Profile"
-          className="w-24 h-24 rounded-full object-cover border-2 border-emerald-500 shadow"
+          src={user?.photoURL}
+          alt="Employee Profile"
+          className="w-24 h-24 rounded-full object-cover border-2 border-emerald-500 dark:border-emerald-400 shadow"
         />
         <div className="text-center md:text-left space-y-2">
-          <h3 className="text-xl font-semibold text-gray-800">
+          <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
             {user?.displayName}
           </h3>
-          <p className="text-gray-600 text-sm">
+          <p className="text-gray-600 dark:text-gray-300 text-sm">
             {role} • {user?.email}
           </p>
-          <p className="text-gray-500 text-sm max-w-md">
+          <p className="text-gray-500 dark:text-gray-400 text-sm max-w-md">
             Passionate about streamlining workflows, improving team
             collaboration, and building tools that make work life easier.
           </p>
-          <button className="mt-2 inline-flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded-full hover:bg-emerald-600 transition">
+          <button className="mt-2 inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-full transition">
             View Profile
           </button>
         </div>

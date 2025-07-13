@@ -17,7 +17,7 @@ const TopRatedEmployee = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <motion.h2
-          className="text-3xl md:text-4xl font-extrabold text-emerald-500"
+          className="text-3xl md:text-4xl font-extrabold text-emerald-500 dark:text-emerald-400"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
@@ -26,7 +26,7 @@ const TopRatedEmployee = () => {
         </motion.h2>
         
         <motion.p
-          className="text-gray-600 leading-relaxed"
+          className="text-gray-600 dark:text-gray-300 leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
@@ -37,7 +37,7 @@ const TopRatedEmployee = () => {
         </motion.p>
 
         <motion.p
-          className="text-gray-500 text-sm"
+          className="text-gray-500 dark:text-gray-400 text-sm"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
@@ -46,10 +46,10 @@ const TopRatedEmployee = () => {
         </motion.p>
 
         <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-          className="inline-flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded-full hover:bg-emerald-600"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 300 }}
+          className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white px-4 py-2 rounded-full"
         >
           See All Stars ⭐
         </motion.button>
@@ -67,7 +67,7 @@ const TopRatedEmployee = () => {
             animationData={topper}
             loop={true}
           />
-          <span className="absolute bottom-2 right-2 bg-white text-emerald-500 text-xs px-2 py-0.5 rounded-full shadow">
+          <span className="absolute bottom-2 right-2 bg-white dark:bg-gray-800 text-emerald-500 dark:text-emerald-400 text-xs px-2 py-0.5 rounded-full shadow">
             Marketing Team
           </span>
         </div>

@@ -13,14 +13,14 @@ const Team = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <h2 className="text-3xl md:text-4xl font-extrabold text-emerald-500">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-emerald-500 dark:text-emerald-400">
           Meet Our Team
         </h2>
-        <p className="text-gray-600">
+        <p className="text-gray-600 dark:text-gray-300">
           We’re a small group of passionate developers, designers & thinkers,
           working together to bring you the best service.
         </p>
-        <p className="text-gray-500">
+        <p className="text-gray-500 dark:text-gray-400">
           Each member brings unique skills to build amazing user experiences.
         </p>
       </motion.div>

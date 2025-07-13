@@ -78,21 +78,23 @@ const AllEmployeeList = () => {
     <div className="relative space-y-6 max-w-4xl mx-auto mt-10">
       {toggle ? (
         <button
-          className="absolute top-16 right-0 text-blue-600"
+          className="absolute top-16 right-0 text-blue-600 dark:text-blue-400"
           onClick={() => setToggle(!toggle)}
+          aria-label="Toggle View"
         >
           <FiGrid size={20} />
         </button>
       ) : (
         <button
-          className="absolute top-16 right-0 text-blue-600"
+          className="absolute top-16 right-0 text-blue-600 dark:text-blue-400"
           onClick={() => setToggle(!toggle)}
+          aria-label="Toggle View"
         >
           <FiList size={20} />
         </button>
       )}
 
-      <h1 className="text-3xl md:text-5xl font-bold text-center text-emerald-500 pb-6">
+      <h1 className="text-3xl md:text-5xl font-bold text-center text-emerald-500 dark:text-emerald-400 pb-6">
         All Employee List
       </h1>
 
@@ -105,22 +107,22 @@ const AllEmployeeList = () => {
         />
       ) : (
         <div className="overflow-x-auto">
-          <table className="min-w-full border border-collapse rounded border-slate-300">
-            <thead className="bg-gray-50 uppercase font-semibold text-gray-700">
+          <table className="min-w-full border border-collapse rounded border-slate-300 dark:border-slate-700">
+            <thead className="bg-gray-50 uppercase font-semibold text-gray-700 dark:bg-gray-800 dark:text-gray-300">
               <tr>
-                <th className="h-12 px-6 text-start border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                <th className="h-12 px-6 text-start border-l first:border-l-0 stroke-slate-700 text-slate-700 dark:stroke-slate-400 dark:text-slate-400 bg-slate-100 dark:bg-gray-900">
                   Name
                 </th>
-                <th className="h-12 px-6 text-start border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                <th className="h-12 px-6 text-start border-l first:border-l-0 stroke-slate-700 text-slate-700 dark:stroke-slate-400 dark:text-slate-400 bg-slate-100 dark:bg-gray-900">
                   Designation
                 </th>
-                <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 dark:stroke-slate-400 dark:text-slate-400 bg-slate-100 dark:bg-gray-900">
                   Make HR
                 </th>
-                <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 dark:stroke-slate-400 dark:text-slate-400 bg-slate-100 dark:bg-gray-900">
                   Increase Salary
                 </th>
-                <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                <th className="h-12 px-6 border-l first:border-l-0 stroke-slate-700 text-slate-700 dark:stroke-slate-400 dark:text-slate-400 bg-slate-100 dark:bg-gray-900">
                   Fire
                 </th>
               </tr>
@@ -128,46 +130,49 @@ const AllEmployeeList = () => {
             <tbody>
               {employees.length === 0 ? (
                 <tr>
-                  <td colSpan="4" className="text-center p-4 text-gray-400">
+                  <td colSpan="5" className="text-center p-4 text-gray-400 dark:text-gray-500">
                     No data found
                   </td>
                 </tr>
               ) : (
                 employees.map((employee) => (
-                  <tr key={employee._id} className="hover:bg-gray-50">
-                    <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                  <tr
+                    key={employee._id}
+                    className="hover:bg-gray-50 dark:hover:bg-gray-700"
+                  >
+                    <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 dark:border-slate-700 dark:stroke-slate-400 dark:text-slate-400">
                       {employee.name}
                     </td>
-                    <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 ">
+                    <td className="h-12 px-6 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 dark:border-slate-700 dark:stroke-slate-400 dark:text-slate-400">
                       {employee.designation}
                     </td>
                     <td
                       onClick={() => handleMakeHr(employee._id)}
-                      className="h-12 px-6 cursor-pointer transition duration-300 text-center border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 "
+                      className="h-12 px-6 cursor-pointer transition duration-300 text-center border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 dark:border-slate-700 dark:stroke-slate-400"
                     >
                       {employee.role === "Employee" ? (
-                        <span className="font-semibold px-2 py-1 bg-emerald-500 rounded-md">
+                        <span className="font-semibold px-2 py-1 bg-emerald-500 rounded-md dark:bg-emerald-600 text-white">
                           Accept
                         </span>
                       ) : (
-                        employee.role === "HR" && "✅"
+                        employee.role === "HR" && (
+                          <span className="text-green-500 dark:text-green-400 font-semibold">✅</span>
+                        )
                       )}
                     </td>
                     <td
-                      onClick={() =>
-                        handleSalary(employee.salary, employee._id)
-                      }
-                      className="h-12 px-6 flex justify-center items-center gap-1 cursor-pointer transition duration-300 text-center border-t border-l first:border-l-0 text-emerald-500 border-slate-200 stroke-slate-500 "
+                      onClick={() => handleSalary(employee.salary, employee._id)}
+                      className="h-12 px-6 flex justify-center items-center gap-1 cursor-pointer transition duration-300 text-center border-t border-l first:border-l-0 text-emerald-500 border-slate-200 stroke-slate-500 dark:border-slate-700 dark:stroke-slate-400 dark:text-emerald-400"
                     >
                       <FaMoneyCheckAlt size={18} />
                       Increase Salary
                     </td>
                     <td
                       onClick={() => handleFired(employee._id)}
-                      className="h-12 px-6 text-center transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 cursor-pointer"
+                      className="h-12 px-6 text-center transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 cursor-pointer dark:border-slate-700 dark:stroke-slate-400 dark:text-slate-400"
                     >
                       {employee.isFire === "Fired" ? (
-                        <span className="text-md font-bold text-red-500">
+                        <span className="text-md font-bold text-red-500 dark:text-red-600">
                           Fired
                         </span>
                       ) : (

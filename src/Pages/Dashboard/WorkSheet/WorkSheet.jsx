@@ -113,7 +113,7 @@ const WorkSheet = () => {
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto mt-10">
-      <h1 className="text-3xl md:text-5xl font-bold text-center text-emerald-500 pb-6">
+      <h1 className="text-3xl md:text-5xl font-bold text-center text-emerald-500 dark:text-emerald-400 pb-6">
         Daily Work Sheet
       </h1>
       {/* Form */}
@@ -124,7 +124,7 @@ const WorkSheet = () => {
         >
           <select
             {...register("task", { required: true })}
-            className="border rounded px-2 py-1 w-full"
+            className="border rounded px-2 py-1 w-full bg-white dark:bg-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600"
           >
             <option value="">Select Task</option>
             <option value="Sales">Sales</option>
@@ -137,19 +137,19 @@ const WorkSheet = () => {
             type="number"
             placeholder="Hours Worked"
             {...register("hours", { required: true })}
-            className="border rounded px-2 py-1 w-full"
+            className="border rounded px-2 py-1 w-full bg-white dark:bg-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600"
           />
 
-            <DatePicker
-              selected={selectedDate}
-              onChange={(date) => setSelectedDate(date)}
-              className="border rounded px-2 py-1"
-              dateFormat="yyyy-MM-dd"
-            />
+          <DatePicker
+            selected={selectedDate}
+            onChange={(date) => setSelectedDate(date)}
+            className="border rounded px-2 py-1 w-full bg-white dark:bg-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600"
+            dateFormat="yyyy-MM-dd"
+          />
 
           <button
             type="submit"
-            className="bg-emerald-500 text-white px-4 py-1 rounded"
+            className="bg-emerald-500 text-white px-4 py-1 rounded hover:bg-emerald-600 transition"
           >
             Add
           </button>
@@ -158,52 +158,60 @@ const WorkSheet = () => {
 
       {/* Table */}
       <div className="overflow-x-auto rounded shadow">
-        <table className="min-w-full text-left text-black border border-collapse rounded sm:border-separate border-slate-200">
-          <thead className="bg-gray-50 uppercase font-semibold text-gray-700">
+        <table className="min-w-full text-left text-black border border-collapse rounded sm:border-separate border-slate-200 dark:border-gray-700 dark:text-gray-300 dark:bg-gray-900">
+          <thead className="bg-gray-50 uppercase font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-300">
             <tr>
-              <th className="px-4 py-2 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+              <th className="px-4 py-2 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600">
                 Task
               </th>
-              <th className="px-4 py-2 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+              <th className="px-4 py-2 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600">
                 Hours
               </th>
-              <th className="px-4 py-2 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+              <th className="px-4 py-2 border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600">
                 Date
               </th>
-              <th className="px-4 py-2 text-center border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+              <th className="px-4 py-2 text-center border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600">
                 Action
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
             {workData.length === 0 ? (
               <tr>
-                <td colSpan="4" className="px-4 py-3 text-center text-gray-400">
+                <td
+                  colSpan="4"
+                  className="px-4 py-3 text-center text-gray-400 dark:text-gray-500"
+                >
                   No data found.
                 </td>
               </tr>
             ) : (
               workData.map((item) => (
-                <tr key={item._id} className="hover:bg-gray-50">
-                  <td className="px-4 py-2 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                <tr
+                  key={item._id}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-800"
+                >
+                  <td className="px-4 py-2 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 dark:border-gray-600 dark:stroke-gray-400 dark:text-gray-300">
                     {item.task}
                   </td>
-                  <td className="px-4 py-2 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                  <td className="px-4 py-2 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 dark:border-gray-600 dark:stroke-gray-400 dark:text-gray-300">
                     {item.hours} Hours
                   </td>
-                  <td className="px-4 py-2 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                  <td className="px-4 py-2 transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 dark:border-gray-600 dark:stroke-gray-400 dark:text-gray-300">
                     {item.date}
                   </td>
-                  <td className="px-4 py-2 transition duration-300 flex justify-around items-center gap-3 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                  <td className="px-4 py-2 transition duration-300 flex justify-around items-center gap-3 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 dark:border-gray-600 dark:stroke-gray-400 dark:text-gray-300">
                     <button
                       onClick={() => handleEdit(item)}
-                      className="text-blue-500 hover:text-blue-700"
+                      className="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-600"
+                      aria-label="Edit"
                     >
                       <FiEdit size={20} />
                     </button>
                     <button
                       onClick={() => handleDelete(item._id)}
-                      className="text-red-500 hover:text-red-700"
+                      className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-600"
+                      aria-label="Delete"
                     >
                       <FiTrash2 size={20} />
                     </button>
@@ -216,7 +224,10 @@ const WorkSheet = () => {
       </div>
 
       {/* Modal */}
-      <dialog id="my_modal_1" className="modal">
+      <dialog
+        id="my_modal_1"
+        className="modal bg-white dark:bg-gray-900 text-black dark:text-gray-300"
+      >
         <div className="modal-box max-w-xl md:h-[200px] h-[250px] relative">
           <form onSubmit={handleUpdate}>
             <div className="flex gap-2 flex-col md:flex-row">
@@ -226,7 +237,7 @@ const WorkSheet = () => {
                 onChange={(e) =>
                   setUpdateItem({ ...updateItem, task: e.target.value })
                 }
-                className="border md:w-[170px] rounded px-2 py-1"
+                className="border md:w-[170px] rounded px-2 py-1 bg-white dark:bg-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600"
               >
                 <option value="">Select Task</option>
                 <option value="Sales">Sales</option>
@@ -241,27 +252,27 @@ const WorkSheet = () => {
                 type="number"
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Hours Worked"
-                className="border md:w-[170px] rounded px-2 py-1"
+                className="border md:w-[170px] rounded px-2 py-1 bg-white dark:bg-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600"
               />
 
               <DatePicker
                 selected={editDate}
                 onChange={(date) => setEditDate(date)}
-                className="border md:w-[170px] w-full rounded px-2 py-1"
+                className="border md:w-[170px] w-full rounded px-2 py-1 bg-white dark:bg-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600"
                 dateFormat="yyyy-MM-dd"
               />
             </div>
 
             <button
               type="submit"
-              className="btn bg-emerald-500 hover:bg-emerald-600 text-black absolute bottom-4 right-4"
+              className="btn bg-emerald-500 hover:bg-emerald-600 text-black dark:text-white absolute bottom-4 right-4"
             >
               Update
             </button>
           </form>
           <div className="modal-action mt-4 absolute bottom-4 left-4">
             <form method="dialog">
-              <button className="btn bg-gray-300 hover:bg-gray-400 text-black">
+              <button className="btn bg-gray-300 hover:bg-gray-400 text-black dark:text-gray-900 dark:bg-gray-300 dark:hover:bg-gray-400">
                 Close
               </button>
             </form>

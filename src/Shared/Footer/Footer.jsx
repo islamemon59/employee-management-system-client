@@ -3,16 +3,16 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-emerald-600 text-emerald-100 text-sm">
+    <footer className="bg-emerald-600 dark:bg-gray-900 text-emerald-100 dark:text-gray-300 text-sm">
       {/* Top section */}
-      <div className="container mx-auto px-6 py-12 border-b border-emerald-500">
+      <div className="container mx-auto px-6 py-12 border-b border-emerald-500 dark:border-gray-700">
         <div className="flex flex-col md:flex-row justify-between gap-8">
           {/* Brand / Logo */}
           <div>
-            <h2 className="text-xl font-semibold text-white mb-2">
+            <h2 className="text-xl font-semibold text-white dark:text-emerald-400 mb-2">
               YourCompany
             </h2>
-            <p className="max-w-xs">
+            <p className="max-w-xs text-gray-100 dark:text-gray-400">
               Empowering teams with seamless employee management and modern HR
               solutions.
             </p>
@@ -23,23 +23,32 @@ const Footer = () => {
             <nav aria-labelledby="footer-product">
               <h3
                 id="footer-product"
-                className="mb-4 text-base font-medium text-white"
+                className="mb-4 text-base font-medium text-white dark:text-emerald-400"
               >
                 Product
               </h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-white dark:hover:text-emerald-300 transition-colors"
+                  >
                     Home
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-white dark:hover:text-emerald-300 transition-colors"
+                  >
                     Dashboard
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-white dark:hover:text-emerald-300 transition-colors"
+                  >
                     Contact Us
                   </a>
                 </li>
@@ -51,18 +60,27 @@ const Footer = () => {
 
       {/* Bottom section */}
       <div className="container mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-xs">
+        <p className="text-xs text-gray-100 dark:text-gray-400">
           &copy; {new Date().getFullYear()} YourCompany. All rights reserved.
         </p>
 
         <div className="flex gap-4">
-          <a href="#" className="hover:text-white transition-colors text-lg">
+          <a
+            href="#"
+            className="hover:text-white dark:hover:text-emerald-300 transition-colors text-lg"
+          >
             <FaFacebookF />
           </a>
-          <a href="#" className="hover:text-white transition-colors text-lg">
+          <a
+            href="#"
+            className="hover:text-white dark:hover:text-emerald-300 transition-colors text-lg"
+          >
             <FaTwitter />
           </a>
-          <a href="#" className="hover:text-white transition-colors text-lg">
+          <a
+            href="#"
+            className="hover:text-white dark:hover:text-emerald-300 transition-colors text-lg"
+          >
             <FaLinkedinIn />
           </a>
         </div>

@@ -9,23 +9,15 @@ const PaymentModal = ({ payEmployee, refetch }) => {
   const axiosSecure = useAxiosSecure();
 
   const requestId = payEmployee?._id;
-
-  console.log(requestId);
-
   const salary = payEmployee.salary;
   const salaryInCents = parseInt(salary) * 100;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!stripe || !elements) {
-      return;
-    }
+    if (!stripe || !elements) return;
 
     const card = elements.getElement(CardElement);
-
-    if (!card) {
-      return;
-    }
+    if (!card) return;
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -34,6 +26,8 @@ const PaymentModal = ({ payEmployee, refetch }) => {
 
     if (error) {
       console.log("[error]", error);
+      toast.error(error.message);
+      return;
     } else {
       console.log("[PaymentMethod]", paymentMethod);
     }
@@ -52,6 +46,7 @@ const PaymentModal = ({ payEmployee, refetch }) => {
 
     if (result.error) {
       console.error(result.error.message);
+      toast.error(result.error.message);
     } else {
       if (result.paymentIntent.status === "succeeded") {
         toast.success("Payment successful!");
@@ -73,7 +68,6 @@ const PaymentModal = ({ payEmployee, refetch }) => {
         );
 
         refetch();
-
         console.log(data);
         document.getElementById("my_modal_1").close();
       }
@@ -86,33 +80,44 @@ const PaymentModal = ({ payEmployee, refetch }) => {
 
   return (
     <dialog id="my_modal_1" className="modal">
-      <div className="modal-box relative">
-        <button onClick={handleModal} className="absolute bottom-3 left-3">
-          <MdClose
-            size={24}
-            className="text-gray-600 hover:text-black cursor-pointer"
-          />
+      <div className="modal-box relative bg-white dark:bg-gray-900 dark:text-gray-200">
+        <button
+          onClick={handleModal}
+          className="absolute bottom-3 left-3 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white cursor-pointer"
+          aria-label="Close Modal"
+        >
+          <MdClose size={24} />
         </button>
         <form onSubmit={handleSubmit}>
           <CardElement
-            className="border-1 p-4 rounded"
+            className="p-4 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
             options={{
               style: {
                 base: {
                   fontSize: "16px",
-                  color: "#424770",
+                  color: "#1f2937", // dark text for light mode
                   "::placeholder": {
-                    color: "#aab7c4",
+                    color: "#6b7280", // placeholder gray for light mode
                   },
+                  fontFamily: "Arial, sans-serif",
+                  iconColor: "#10b981", // emerald green icon
                 },
                 invalid: {
-                  color: "#9e2146",
+                  color: "#ef4444", // red for invalid input
+                  iconColor: "#ef4444",
+                },
+                dark: {
+                  color: "#d1d5db", // light gray text in dark mode
+                  "::placeholder": {
+                    color: "#9ca3af",
+                  },
+                  iconColor: "#10b981",
                 },
               },
             }}
           />
           <button
-            className="btn w-full mt-3 bg-emerald-500 hover:bg-emerald-600 text-white"
+            className="btn w-full mt-3 bg-emerald-500 hover:bg-emerald-600 text-white disabled:opacity-50 disabled:cursor-not-allowed"
             type="submit"
             disabled={!stripe}
           >

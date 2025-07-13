@@ -1,5 +1,9 @@
 import React from "react";
-import { MdOutlineHistory, MdOutlineMarkChatRead, MdOutlinePlaylistAddCheck } from "react-icons/md";
+import {
+  MdOutlineHistory,
+  MdOutlineMarkChatRead,
+  MdOutlinePlaylistAddCheck,
+} from "react-icons/md";
 import { NavLink } from "react-router";
 import { MdAssignment } from "react-icons/md";
 import { FiHome, FiUsers } from "react-icons/fi";
@@ -9,17 +13,17 @@ import useUserRole from "../../Hooks/useUserRole";
 const DashboardNavLinks = () => {
   const { role, isLoading } = useUserRole();
 
+  const linkClasses = ({ isActive }) =>
+    `${
+      isActive ? "bg-emerald-700 dark:bg-emerald-800" : ""
+    } flex items-center gap-3 rounded p-3 text-white transition-colors 
+    hover:bg-emerald-600 hover:text-black 
+    dark:hover:bg-emerald-500 dark:hover:text-white`;
+
   return (
     <ul className="flex flex-1 flex-col gap-1 py-3">
       <li className="px-3">
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `${
-              isActive && "bg-emerald-700"
-            } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
-          }
-        >
+        <NavLink to="/" className={linkClasses}>
           <FiHome className="text-xl" />
           <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
             Home
@@ -29,14 +33,7 @@ const DashboardNavLinks = () => {
       {role === "Employee" && !isLoading && (
         <>
           <li className="px-3">
-            <NavLink
-              to="/dashboard/workSheet"
-              className={({ isActive }) =>
-                `${
-                  isActive && "bg-emerald-700"
-                } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
-              }
-            >
+            <NavLink to="/dashboard/workSheet" className={linkClasses}>
               <MdAssignment className="text-xl" />
               <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
                 Work Sheet
@@ -44,14 +41,7 @@ const DashboardNavLinks = () => {
             </NavLink>
           </li>
           <li className="px-3">
-            <NavLink
-              to="/dashboard/paymentHistory"
-              className={({ isActive }) =>
-                `${
-                  isActive && "bg-emerald-700"
-                } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
-              }
-            >
+            <NavLink to="/dashboard/paymentHistory" className={linkClasses}>
               <MdOutlineHistory className="text-xl" />
               <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
                 Payment History
@@ -63,15 +53,7 @@ const DashboardNavLinks = () => {
       {role === "HR" && !isLoading && (
         <>
           <li className="px-3">
-            {" "}
-            <NavLink
-              to="/dashboard/employeeList"
-              className={({ isActive }) =>
-                `${
-                  isActive && "bg-emerald-700"
-                } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
-              }
-            >
+            <NavLink to="/dashboard/employeeList" className={linkClasses}>
               <FiUsers className="text-xl" />
               <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
                 All Employee List
@@ -79,14 +61,7 @@ const DashboardNavLinks = () => {
             </NavLink>
           </li>
           <li className="px-3">
-            <NavLink
-              to="/dashboard/progressList"
-              className={({ isActive }) =>
-                `${
-                  isActive && "bg-emerald-700"
-                } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
-              }
-            >
+            <NavLink to="/dashboard/progressList" className={linkClasses}>
               <MdOutlinePlaylistAddCheck className="text-xl" />
               <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
                 Progress List
@@ -98,14 +73,7 @@ const DashboardNavLinks = () => {
       {role === "Admin" && !isLoading && (
         <>
           <li className="px-3">
-            <NavLink
-              to="/dashboard/allEmployeeList"
-              className={({ isActive }) =>
-                `${
-                  isActive && "bg-emerald-700"
-                } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
-              }
-            >
+            <NavLink to="/dashboard/allEmployeeList" className={linkClasses}>
               <FaUsers className="text-xl" />
               <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
                 All Employee List
@@ -113,14 +81,7 @@ const DashboardNavLinks = () => {
             </NavLink>
           </li>
           <li className="px-3">
-            <NavLink
-              to="/dashboard/payRoll"
-              className={({ isActive }) =>
-                `${
-                  isActive && "bg-emerald-700"
-                } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
-              }
-            >
+            <NavLink to="/dashboard/payRoll" className={linkClasses}>
               <FaMoneyCheckAlt className="text-xl" />
               <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
                 Pay Roll
@@ -128,17 +89,10 @@ const DashboardNavLinks = () => {
             </NavLink>
           </li>
           <li className="px-3">
-            <NavLink
-              to="/dashboard/visitor"
-              className={({ isActive }) =>
-                `${
-                  isActive && "bg-emerald-700"
-                } flex items-center gap-3 rounded p-3 text-white transition-colors hover:bg-emerald-600 hover:text-black`
-              }
-            >
+            <NavLink to="/dashboard/visitor" className={linkClasses}>
               <MdOutlineMarkChatRead className="text-xl" />
               <div className="flex w-full flex-1 flex-col items-start justify-center text-xl font-semibold gap-0 overflow-hidden truncate">
-               Visitor Message
+                Visitor Message
               </div>
             </NavLink>
           </li>

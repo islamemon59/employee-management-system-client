@@ -53,14 +53,13 @@ const Register = () => {
         photoURL: image,
         email: data?.email,
       });
-      
+
       Swal.fire({
         title: "Registration Successful",
         icon: "success",
         draggable: true,
       });
       navigate(from);
-
     } catch (error) {
       toast.error(error?.message);
     } finally {
@@ -70,8 +69,11 @@ const Register = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 p-6 border border-gray-300 rounded-lg shadow">
-      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+    <div
+      className="max-w-3xl mx-auto mt-10 p-6 border border-gray-300 rounded-lg shadow
+                 bg-white dark:bg-gray-900 dark:border-gray-700"
+    >
+      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-900 dark:text-gray-100">
         Register
       </h2>
 
@@ -81,11 +83,14 @@ const Register = () => {
       >
         {/* Full Name */}
         <div>
-          <label className="block mb-1 text-sm font-medium">Full Name</label>
+          <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Full Name
+          </label>
           <input
             type="text"
             placeholder="Full Name"
-            className="w-full border border-gray-400 px-3 py-2 rounded"
+            className="w-full border border-gray-400 px-3 py-2 rounded
+                       bg-white dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600"
             {...register("name", { required: "Name is required" })}
           />
           {errors.name && (
@@ -95,11 +100,14 @@ const Register = () => {
 
         {/* Email */}
         <div>
-          <label className="block mb-1 text-sm font-medium">Email</label>
+          <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Email
+          </label>
           <input
             type="email"
             placeholder="Email"
-            className="w-full border border-gray-400 px-3 py-2 rounded"
+            className="w-full border border-gray-400 px-3 py-2 rounded
+                       bg-white dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600"
             {...register("email", { required: "Email is required" })}
           />
           {errors.email && (
@@ -109,11 +117,14 @@ const Register = () => {
 
         {/* Password */}
         <div className="relative">
-          <label className="block mb-1 text-sm font-medium">Password</label>
+          <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Password
+          </label>
           <input
             type={isPassword ? "text" : "password"}
             placeholder="Password"
-            className="w-full border border-gray-400 px-3 py-2 rounded"
+            className="w-full border border-gray-400 px-3 py-2 rounded
+                       bg-white dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600"
             {...register("password", {
               required: "Password is required",
               minLength: { value: 6, message: "At least 6 characters" },
@@ -129,12 +140,12 @@ const Register = () => {
           {isPassword ? (
             <FaRegEyeSlash
               onClick={() => setIsPassword(!isPassword)}
-              className="absolute bottom-3 right-3 cursor-pointer"
+              className="absolute bottom-3 right-3 cursor-pointer text-gray-700 dark:text-gray-300"
             />
           ) : (
             <FaEye
               onClick={() => setIsPassword(!isPassword)}
-              className="absolute bottom-3 right-3 cursor-pointer"
+              className="absolute bottom-3 right-3 cursor-pointer text-gray-700 dark:text-gray-300"
             />
           )}
           {errors.password && (
@@ -146,9 +157,12 @@ const Register = () => {
 
         {/* Role */}
         <div>
-          <label className="block mb-1 text-sm font-medium">Role</label>
+          <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Role
+          </label>
           <select
-            className="w-full border border-gray-400 px-3 py-2 rounded"
+            className="w-full border border-gray-400 px-3 py-2 rounded
+                       bg-white dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600"
             {...register("role", { required: "Role is required" })}
           >
             <option value="">Select Role</option>
@@ -162,9 +176,12 @@ const Register = () => {
 
         {/* Designation */}
         <div>
-          <label className="block mb-1 text-sm font-medium">Designation</label>
+          <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Designation
+          </label>
           <select
-            className="w-full border border-gray-400 px-3 py-2 rounded"
+            className="w-full border border-gray-400 px-3 py-2 rounded
+                       bg-white dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600"
             {...register("designation", {
               required: "Designation is required",
             })}
@@ -185,13 +202,14 @@ const Register = () => {
 
         {/* Bank Account No */}
         <div>
-          <label className="block mb-1 text-sm font-medium">
+          <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
             Bank Account No
           </label>
           <input
             type="number"
             placeholder="Bank Account No"
-            className="w-full border border-gray-400 px-3 py-2 rounded"
+            className="w-full border border-gray-400 px-3 py-2 rounded
+                       bg-white dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600"
             {...register("bank_account_no", {
               required: "Bank account number is required",
             })}
@@ -205,11 +223,14 @@ const Register = () => {
 
         {/* Salary */}
         <div>
-          <label className="block mb-1 text-sm font-medium">Salary</label>
+          <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Salary
+          </label>
           <input
             type="number"
             placeholder="Salary"
-            className="w-full border border-gray-400 px-3 py-2 rounded"
+            className="w-full border border-gray-400 px-3 py-2 rounded
+                       bg-white dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600"
             {...register("salary", { required: "Salary is required" })}
           />
           {errors.salary && (
@@ -219,11 +240,14 @@ const Register = () => {
 
         {/* Photo (full width on mobile) */}
         <div>
-          <label className="block mb-1 text-sm font-medium">Photo</label>
+          <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Photo
+          </label>
           <input
             type="file"
             accept="image/*"
-            className="w-full border border-gray-400 px-3 py-2 rounded"
+            className="w-full border border-gray-400 px-3 py-2 rounded
+                       bg-white dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600"
             {...register("photo", { required: "Photo is required" })}
           />
           {errors.photo && (
@@ -235,7 +259,7 @@ const Register = () => {
         <div className="md:col-span-2">
           <button
             type="submit"
-            className="w-full bg-emerald-500 text-white py-2 rounded hover:bg-emerald-600"
+            className="w-full bg-emerald-500 text-white py-2 rounded hover:bg-emerald-600 transition"
           >
             Register
           </button>
@@ -244,10 +268,12 @@ const Register = () => {
 
       <Link
         to="/login"
-        className="block text-center font-semibold text-sm mt-3"
+        className="block text-center font-semibold text-sm mt-3 text-gray-900 dark:text-gray-300"
       >
         Already have an account?{" "}
-        <span className="text-indigo-700 hover:underline">Login</span>
+        <span className="text-indigo-700 hover:underline dark:text-indigo-400">
+          Login
+        </span>
       </Link>
 
       <div className="mt-6 text-center">

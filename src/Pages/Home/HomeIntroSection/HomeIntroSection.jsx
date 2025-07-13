@@ -16,7 +16,7 @@ const HomeIntroSection = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <motion.h2
-          className="text-4xl font-extrabold text-emerald-500 leading-tight"
+          className="text-4xl font-extrabold text-emerald-500 leading-tight dark:text-emerald-400"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
@@ -25,7 +25,7 @@ const HomeIntroSection = () => {
         </motion.h2>
 
         <motion.p
-          className="text-gray-600 text-lg"
+          className="text-gray-600 dark:text-gray-300 text-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
@@ -39,7 +39,7 @@ const HomeIntroSection = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           transition={{ type: "spring", stiffness: 300 }}
-          className="inline-flex items-center gap-2 bg-emerald-500 text-white px-5 py-3 rounded-full hover:bg-emerald-600"
+          className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white px-5 py-3 rounded-full"
         >
           Get Started
           <FiArrowRight size={18} />
