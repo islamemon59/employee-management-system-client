@@ -62,14 +62,18 @@ const PaymentModal = ({ payEmployee, refetch }) => {
           transactionId: result.paymentIntent.id,
         };
 
-        const { data } = await axiosSecure.post(
-          `employee/payment/data/${requestId}`,
-          paymentData
-        );
-
-        refetch();
-        console.log(data);
-        document.getElementById("my_modal_1").close();
+        try {
+          const { data } = await axiosSecure.post(
+            `employee/payment/data/${requestId}`,
+            paymentData
+          );
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          refetch();
+          document.getElementById("my_modal_1").close();
+        }
       }
     }
   };
