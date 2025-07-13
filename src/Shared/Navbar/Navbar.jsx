@@ -116,7 +116,7 @@ const Navbar = () => {
               </div>
             </button>
 
-            <a
+            <Link to="/"
               id="WindUI"
               aria-label="WindUI logo"
               aria-current="page"
@@ -133,7 +133,7 @@ const Navbar = () => {
                 src="https://i.ibb.co/RTg7XXGb/Screenshot-2025-07-11-200146-removebg-preview.png"
                 alt="logo"
               />
-            </a>
+            </Link>
 
             <NavbarLinks isToggleOpen={isToggleOpen} />
 

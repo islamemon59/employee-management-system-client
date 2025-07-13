@@ -114,16 +114,15 @@ const DashboardLayout = () => {
         </footer>
       </aside>
 
-      <div className="lg:mr-47 p-4 max-w-7xl mx-auto bg-white dark:bg-gray-900 min-h-screen">
+      {/* 🛠 Change: add lg:ml-72 to prevent content overlap on large screens */}
+      <div className="lg:pl-76 p-4 max-w-7xl mx-auto bg-white dark:bg-gray-900 min-h-screen">
         <Outlet />
       </div>
 
       {/* Backdrop */}
       <div
         className={`fixed top-0 bottom-0 left-0 right-0 z-30 transition-colors sm:hidden ${
-          isSideNavOpen
-            ? "block bg-slate-900/80 dark:bg-black/80"
-            : "hidden"
+          isSideNavOpen ? "block bg-slate-900/80 dark:bg-black/80" : "hidden"
         }`}
         onClick={() => setIsSideNavOpen(false)}
       ></div>
