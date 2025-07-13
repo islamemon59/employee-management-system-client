@@ -1,13 +1,17 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { FaTasks, FaRegCalendarAlt, FaBullhorn } from "react-icons/fa";
+import { FaBullhorn, FaClipboardList, FaClock } from "react-icons/fa";
 import useAuth from "../../../../Hooks/useAuth";
 import useUserRole from "../../../../Hooks/useUserRole";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
 const EmployeeDashboard = () => {
   const { user } = useAuth();
   const { role } = useUserRole();
+  const axiosSecure = useAxiosSecure();
+  const [employeeWorkData, setEmployeeWorkData] = useState({});
   // Animation variants
   const cardVariant = {
     hidden: { opacity: 0, y: 30 },
@@ -21,29 +25,45 @@ const EmployeeDashboard = () => {
 
   const cards = [
     {
-      Icon: FaTasks,
-      value: 12,
-      label: "Tasks Assigned",
+      Icon: FaClipboardList, // shows a clipboard or task list
+      value: employeeWorkData?.totalTasks || 0,
+      label: "Total Tasks Completed",
       color: "text-blue-500",
     },
     {
-      Icon: FaRegCalendarAlt,
-      value: 1,
-      label: "Pending Leave Requests",
+      Icon: FaClock, // shows a clock, perfect for hours worked
+      value: employeeWorkData?.totalHours || 0,
+      label: "Total Hours Worked",
       color: "text-yellow-500",
     },
     {
-      Icon: FaBullhorn,
+      Icon: FaBullhorn, // keep this or change if you like
       value: 3,
       label: "Announcements",
       color: "text-purple-500",
     },
   ];
 
+  const email = user?.email;
+
+  const { data: works = [] } = useQuery({
+    queryKey: ["email", email],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(
+        `employee/work/data/count?email=${email}`
+      );
+      return data;
+    },
+  });
+
+  useEffect(() => {
+    setEmployeeWorkData(works[0]);
+  }, [works]);
+
   return (
     <div className="max-w-7xl mx-auto p-6 space-y-8">
       <motion.h1
-        className="text-3xl font-bold text-gray-800"
+        className="text-3xl md:text-4xl font-extrabold text-emerald-500 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -78,7 +98,7 @@ const EmployeeDashboard = () => {
             >
               <item.Icon size={30} className={`${item.color} mb-2`} />
             </motion.div>
-            <p className="mt-1 text-3xl font-semibold text-emerald-600">
+            <p className="mt-1 text-3xl font-extrabold text-emerald-600">
               {item.value}
             </p>
             <p className="text-gray-600 mt-1 text-sm">{item.label}</p>

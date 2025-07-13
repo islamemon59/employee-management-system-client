@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   FaUserPlus,
@@ -9,10 +9,14 @@ import {
 } from "react-icons/fa";
 import useUserRole from "../../../../Hooks/useUserRole";
 import useAuth from "../../../../Hooks/useAuth";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import { employeesCountData } from "../../../../Api/CountOfEmployeeData";
 
 const HrDashboard = () => {
   const { user } = useAuth();
   const { role } = useUserRole();
+  const [employeesData, setEmployeesData] = useState({});
   // Animation variants
   const cardVariant = {
     hidden: { opacity: 0, y: 30 },
@@ -27,34 +31,62 @@ const HrDashboard = () => {
   const cards = [
     {
       Icon: FaUserPlus,
-      value: 24,
+      value: employeesData.unverifiedEmployees,
       label: "New Applicants",
       color: "text-blue-500",
     },
     {
       Icon: FaCalendarCheck,
-      value: 5,
-      label: "Pending Interviews",
+      value: employeesData.verifiedEmployees,
+      label: "Verified Employees",
       color: "text-yellow-500",
     },
     {
       Icon: FaRegCalendarAlt,
-      value: 7,
-      label: "Leave Requests",
+      value: employeesData.unverifiedEmployees,
+      label: "Unverified Employees",
       color: "text-purple-500",
     },
     {
       Icon: FaUsers,
-      value: 120,
+      value: employeesData.totalEmployees,
       label: "Active Employees",
       color: "text-green-500",
     },
   ];
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await employeesCountData();
+      const response = data[0];
+
+      const transformed = {
+        totalEmployees: response.totalEmployees?.[0]?.count || 0,
+        verifiedEmployees: response.verifiedEmployees?.[0]?.count || 0,
+        unverifiedEmployees: response.unverifiedEmployees?.[0]?.count || 0,
+        totalByRole: response.totalByRole
+          ? response.totalByRole.reduce((acc, item) => {
+              acc[item._id] = item.count;
+              return acc;
+            }, {})
+          : {},
+      };
+
+      console.log("API data:", data);
+      console.log("Transformed:", transformed);
+
+      setEmployeesData(transformed);
+    };
+
+    fetchData();
+  }, [setEmployeesData]);
+
+  console.log(employeesData);
+
   return (
     <div className="max-w-7xl mx-auto p-6 space-y-8">
       <motion.h1
-        className="text-3xl font-bold text-gray-800"
+        className="text-3xl md:text-4xl font-extrabold text-emerald-500 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -89,7 +121,7 @@ const HrDashboard = () => {
             >
               <item.Icon size={30} className={`${item.color} mb-2`} />
             </motion.div>
-            <p className="mt-1 text-3xl font-semibold text-emerald-600">
+            <p className="mt-1 text-3xl font-extrabold text-emerald-600">
               {item.value}
             </p>
             <p className="text-gray-600 mt-1 text-sm">{item.label}</p>
