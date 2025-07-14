@@ -39,7 +39,7 @@ const EmployeeList = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="space-y-6 max-w-6xl mx-auto mt-10">
+    <div className="space-y-6 max-w-5xl mx-auto mt-10">
       <h1 className="text-3xl md:text-5xl font-bold text-center text-emerald-500 pb-6">
         All Employee List
       </h1>
