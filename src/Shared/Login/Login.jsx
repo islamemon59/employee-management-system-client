@@ -1,14 +1,15 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import SocialLoginButton from "../../Components/SocialLoginButton/SocialLoginButton";
 import useAuth from "../../Hooks/useAuth";
-import { Link, useLocation, useNavigate } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import Loader from "../Loader/Loader";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Login = () => {
-  const { signInUser, setLoading, loading } = useAuth();
+  const { signInUser, setLoading, loading, signOutUser } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || "/";
@@ -22,7 +23,18 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      await signInUser(data.email, data.password);
+      const res = await signInUser(data.email, data.password);
+
+      const logInUser = res.user;
+      const result = await axiosSecure.get(
+        `employee/isFire?email=${logInUser?.email}`
+      );
+      if (result.data.isFire === "Fired") {
+        toast.error("You Already Fired");
+        signOutUser();
+        return navigate("/login");
+      }
+
       Swal.fire({
         title: "Successfully Login",
         icon: "success",
@@ -37,8 +49,10 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20 p-6 border border-gray-300 rounded-lg shadow
-                    bg-white dark:bg-gray-900 dark:border-gray-700">
+    <div
+      className="max-w-md mx-auto mt-20 p-6 border border-gray-300 rounded-lg shadow
+                    bg-white dark:bg-gray-900 dark:border-gray-700"
+    >
       <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-gray-900 dark:text-gray-100">
         Login now
       </h2>
@@ -72,7 +86,9 @@ const Login = () => {
             {...register("password", { required: "Password is required" })}
           />
           {errors.password && (
-            <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+            <p className="text-red-500 text-sm mt-1">
+              {errors.password.message}
+            </p>
           )}
         </div>
 

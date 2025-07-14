@@ -6,9 +6,11 @@ import toast from "react-hot-toast";
 import { postEmployeeData } from "../../Api/PostEmployeeData";
 import Swal from "sweetalert2";
 import Loader from "../../Shared/Loader/Loader";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const SocialLoginButton = () => {
-  const { signInWithGoogle, loading, setLoading } = useAuth();
+  const { signInWithGoogle, loading, setLoading, signOutUser } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || "/";
@@ -19,6 +21,15 @@ const SocialLoginButton = () => {
     try {
       const res = await signInWithGoogle();
       const user = res.user;
+
+      const { data } = await axiosSecure.get(
+        `employee/isFire?email=${user?.email}`
+      );
+      if (data.isFire === "Fired") {
+        toast.error("You Already Fired");
+        signOutUser();
+        return navigate("/login");
+      }
 
       const employeeData = {
         bank_account_no: 101010101010101,
