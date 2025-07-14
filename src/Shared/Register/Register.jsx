@@ -121,34 +121,36 @@ const Register = () => {
           <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
             Password
           </label>
-          <input
-            type={isPassword ? "text" : "password"}
-            placeholder="Password"
-            className="w-full border border-gray-400 px-3 py-2 rounded
+          <div className="relative">
+            <input
+              type={isPassword ? "text" : "password"}
+              placeholder="Password"
+              className="w-full border border-gray-400 px-3 py-2 rounded
                        bg-white dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600"
-            {...register("password", {
-              required: "Password is required",
-              minLength: { value: 6, message: "At least 6 characters" },
-              validate: {
-                hasCapital: (v) =>
-                  /[A-Z]/.test(v) || "Must include one capital letter",
-                hasSpecial: (v) =>
-                  /[!@#$%^&*(),.?":{}|<>]/.test(v) ||
-                  "Must include one special character",
-              },
-            })}
-          />
-          {isPassword ? (
-            <FaRegEyeSlash
-              onClick={() => setIsPassword(!isPassword)}
-              className="absolute bottom-3 right-3 cursor-pointer text-gray-700 dark:text-gray-300"
+              {...register("password", {
+                required: "Password is required",
+                minLength: { value: 6, message: "At least 6 characters" },
+                validate: {
+                  hasCapital: (v) =>
+                    /[A-Z]/.test(v) || "Must include one capital letter",
+                  hasSpecial: (v) =>
+                    /[!@#$%^&*(),.?":{}|<>]/.test(v) ||
+                    "Must include one special character",
+                },
+              })}
             />
-          ) : (
-            <FaEye
-              onClick={() => setIsPassword(!isPassword)}
-              className="absolute bottom-3 right-3 cursor-pointer text-gray-700 dark:text-gray-300"
-            />
-          )}
+            {isPassword ? (
+              <FaRegEyeSlash
+                onClick={() => setIsPassword(!isPassword)}
+                className="absolute bottom-3 right-3 cursor-pointer text-gray-700 dark:text-gray-300"
+              />
+            ) : (
+              <FaEye
+                onClick={() => setIsPassword(!isPassword)}
+                className="absolute bottom-3 right-3 cursor-pointer text-gray-700 dark:text-gray-300"
+              />
+            )}
+          </div>
           {errors.password && (
             <p className="text-red-500 text-xs mt-1">
               {errors.password.message}
