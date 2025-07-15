@@ -47,6 +47,8 @@ const Register = () => {
         last_log_in: new Date().toISOString(),
       };
 
+      // if(!user?.accessToken) return <Loader/>
+
       await postEmployeeData(employeeData, userData?.accessToken);
       setUser({
         ...user,
