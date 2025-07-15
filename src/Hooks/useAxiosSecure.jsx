@@ -11,7 +11,7 @@ const useAxiosSecure = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   useEffect(() => {
-    axiosSecure.interceptors.request.use(
+    const requestInterceptor = axiosSecure.interceptors.request.use(
       (config) => {
         config.headers.authorization = `Bearer ${user?.accessToken}`;
         return config;
@@ -20,7 +20,7 @@ const useAxiosSecure = () => {
         return Promise.reject(error);
       }
     );
-    axiosSecure.interceptors.response.use(
+    const responseInterceptor = axiosSecure.interceptors.response.use(
       (response) => {
         return response;
       },
@@ -41,6 +41,11 @@ const useAxiosSecure = () => {
         return Promise.reject(error);
       }
     );
+
+    return () => {
+      axiosSecure.interceptors.request.eject(requestInterceptor);
+      axiosSecure.interceptors.response.eject(responseInterceptor);
+    };
   }, [navigate, user]);
 
   return axiosSecure;
