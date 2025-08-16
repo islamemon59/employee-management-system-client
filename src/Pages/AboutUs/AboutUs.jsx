@@ -3,9 +3,9 @@ import { FaBullseye, FaHandshake, FaGlobe } from "react-icons/fa";
 
 const AboutUs = () => {
   return (
-    <div className="font-sans text-gray-800 bg-white dark:bg-gray-900 dark:text-gray-100">
+    <div className="font-sans text-gray-800 dark:text-gray-100">
       {/* Hero Section */}
-      <section className="bg-gray-100 dark:bg-gray-800 py-16 md:py-24">
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-emerald-600 mb-4 animate-fadeInDown">
             About Our Company
@@ -30,7 +30,7 @@ const AboutUs = () => {
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-emerald-600 dark:text-gray-50">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-emerald-600">
                 Our Mission
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
@@ -64,9 +64,9 @@ const AboutUs = () => {
       </section>
 
       {/* Core Values Section */}
-      <section className="bg-gray-50 dark:bg-gray-800 py-16 md:py-24">
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-10 text-emerald-600 dark:text-gray-50">
+          <h2 className="text-3xl md:text-4xl font-bold mb-10 text-emerald-600">
             Our Core Values
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -3,6 +3,10 @@ import NavbarLinks from "../../Components/NavbarLinks/NavbarLinks";
 import useAuth from "../../Hooks/useAuth";
 import { Link } from "react-router";
 import Loader from "../Loader/Loader";
+import { FiMenu, FiX } from "react-icons/fi";
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from "framer-motion";
+import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
 
 const Navbar = () => {
   const [isToggleOpen, setIsToggleOpen] = useState(false);
@@ -68,13 +72,38 @@ const Navbar = () => {
                 clipRule="evenodd"
               />
             </svg>
-            +30 675 000 9800
+            +8801920228756
           </a>
 
           <div className="flex items-center gap-4">
             {/* Socials placeholder */}
             <span className="text-xs text-emerald-200">
-              Follow us on socials
+              <div className="flex space-x-4">
+                <Link
+                  to="https://www.linkedin.com/in/emonislam59"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 dark:text-gray-300 hover:text-sky-500 dark:hover:text-white text-2xl transition"
+                >
+                  <FaLinkedin />
+                </Link>
+                <Link
+                  to="https://x.com/IstiakAhme13930"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 dark:text-gray-300 hover:text-sky-500 text-2xl transition"
+                >
+                  <FaTwitter />
+                </Link>
+                <Link
+                  to="https://github.com/islamemon59"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 dark:text-gray-300 hover:text-black dark:hover:text-white text-2xl transition"
+                >
+                  <FaGithub />
+                </Link>
+              </div>
             </span>
           </div>
         </div>
@@ -85,47 +114,34 @@ const Navbar = () => {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <nav className="flex h-16 items-center justify-between">
             {/* Mobile Toggle */}
-            <button
-              className={`relative block h-10 w-10 rounded-md lg:hidden focus:outline-none`}
-              onClick={() => setIsToggleOpen(!isToggleOpen)}
-              aria-label="Toggle navigation"
-            >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span
-                  className={`block h-0.5 w-6 rounded bg-gray-800 dark:bg-gray-200 transition-all ${
-                    isToggleOpen
-                      ? "rotate-45 translate-y-1.5"
-                      : "-translate-y-1.5"
-                  }`}
-                ></span>
-                <span
-                  className={`block h-0.5 w-6 rounded bg-gray-800 dark:bg-gray-200 transition-all ${
-                    isToggleOpen ? "opacity-0" : "opacity-100"
-                  }`}
-                ></span>
-                <span
-                  className={`block h-0.5 w-6 rounded bg-gray-800 dark:bg-gray-200 transition-all ${
-                    isToggleOpen
-                      ? "-rotate-45 -translate-y-1.5"
-                      : "translate-y-1.5"
-                  }`}
-                ></span>
-              </div>
-            </button>
 
-            {/* Logo */}
-            <Link to="/" className="flex items-center gap-2">
-              <img
-                className="hidden sm:block w-40"
-                src="https://i.ibb.co/ycgk60M4/Screenshot-2025-07-11-200146-removebg-preview.png"
-                alt="logo"
-              />
-              <img
-                className="block sm:hidden w-12"
-                src="https://i.ibb.co/RTg7XXGb/Screenshot-2025-07-11-200146-removebg-preview.png"
-                alt="logo"
-              />
-            </Link>
+            <div className="flex items-center gap-2">
+              <button
+                className="relative h-10 w-10 rounded-md lg:hidden focus:outline-none flex items-center justify-center text-gray-800 dark:text-gray-200"
+                onClick={() => setIsToggleOpen(!isToggleOpen)}
+                aria-label="Toggle navigation"
+              >
+                {isToggleOpen ? (
+                  <FiX size={28} /> // Close icon
+                ) : (
+                  <FiMenu size={28} /> // Hamburger menu icon
+                )}
+              </button>
+
+              {/* Logo */}
+              <Link to="/" className="flex items-center gap-2">
+                <img
+                  className="hidden sm:block w-40"
+                  src="https://i.ibb.co/ycgk60M4/Screenshot-2025-07-11-200146-removebg-preview.png"
+                  alt="logo"
+                />
+                <img
+                  className="block sm:hidden w-12"
+                  src="https://i.ibb.co/RTg7XXGb/Screenshot-2025-07-11-200146-removebg-preview.png"
+                  alt="logo"
+                />
+              </Link>
+            </div>
 
             {/* Links (Desktop) */}
             <div className="hidden lg:flex flex-1 justify-center">
@@ -200,11 +216,19 @@ const Navbar = () => {
           </nav>
 
           {/* Mobile Menu */}
-          {isToggleOpen && (
-            <div className="lg:hidden mt-3 rounded-lg bg-white dark:bg-gray-900 shadow-md p-4">
-              <NavbarLinks isToggleOpen={isToggleOpen} />
-            </div>
-          )}
+          <AnimatePresence>
+            {isToggleOpen && (
+              <motion.div
+                initial={{ y: -50, opacity: 0 }} // start above with hidden
+                animate={{ y: 0, opacity: 1 }} // slide into view
+                exit={{ y: -50, opacity: 0 }} // slide back up on close
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="lg:hidden mt-3 rounded-lg bg-white dark:bg-gray-900 absolute w-full left-0 shadow-lg"
+              >
+                <NavbarLinks isToggleOpen={isToggleOpen} />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </header>
     </>

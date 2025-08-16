@@ -1,84 +1,42 @@
-// src/components/NavbarLinks.jsx
-import React from "react";
-import { NavLink } from "react-router"; // Ensure this is from react-router-dom
+import { NavLink } from "react-router";
 
 const NavbarLinks = ({ isToggleOpen }) => {
   return (
     <ul
       role="menubar"
       aria-label="Select page"
-      className={`absolute left-0 top-0 z-[-1] h-[18rem] w-full justify-center overflow-hidden overscroll-contain
-        bg-emerald-500 px-8 pb-12 pt-24 font-medium transition-[opacity,visibility] duration-300
-        dark:bg-emerald-900
-        lg:visible lg:relative lg:top-0 lg:z-0 lg:flex lg:h-full lg:w-auto lg:items-stretch lg:overflow-visible
-        lg:bg-white/0 dark:lg:bg-transparent
-        lg:px-0 lg:py-0 lg:pt-0 lg:opacity-100
-        ${
-          isToggleOpen
-            ? "visible opacity-100 backdrop-blur-sm"
-            : "invisible opacity-0"
-        }`}
+      className={`
+        flex flex-col lg:flex-row lg:items-center font-medium
+        transition-all duration-300 ease-in-out
+        bg-emerald-600 dark:bg-emerald-900 lg:bg-transparent lg:dark:bg-transparent
+        px-6 lg:px-0 py-4 lg:py-0 rounded-lg lg:rounded-none
+        absolute lg:static top-0 left-0 w-full lg:w-auto
+        shadow-md lg:shadow-none
+        ${isToggleOpen ? "opacity-100 visible" : "opacity-0 invisible lg:opacity-100 lg:visible"}
+      `}
     >
-      <li role="none" className="flex items-stretch">
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `liquid-link flex items-center gap-2 py-2 px-2 lg:px-4 rounded-full
-            ${
-              isActive
-                ? "text-emerald-500 dark:text-emerald-500 active-fill"
-                : "text-gray-100 dark:text-gray-100"
-            }`
-          }
-        >
-          <span>Home</span>
-        </NavLink>
-      </li>
-      <li role="none" className="flex items-stretch">
-        <NavLink
-          to="/dashboard"
-          className={({ isActive }) =>
-            `liquid-link flex items-center gap-2 py-2 px-2 lg:px-4 rounded-full
-            ${
-              isActive
-                ? "text-emerald-500 dark:text-emerald-500 active-fill"
-                : "text-gray-100 dark:text-gray-100"
-            }`
-          }
-        >
-          <span>Dashboard</span>
-        </NavLink>
-      </li>
-      <li role="none" className="flex items-stretch">
-        <NavLink
-          to="/contactUs"
-          className={({ isActive }) =>
-            `liquid-link flex items-center gap-2 py-2 px-2 lg:px-4 rounded-full
-            ${
-              isActive
-                ? "text-emerald-500 dark:text-emerald-500 active-fill"
-                : "text-gray-100 dark:text-gray-100"
-            }`
-          }
-        >
-          <span>Contact Us</span>
-        </NavLink>
-      </li>
-      <li role="none" className="flex items-stretch">
-        <NavLink
-          to="/aboutUs"
-          className={({ isActive }) =>
-            `liquid-link flex items-center gap-2 py-2 px-2 lg:px-4 rounded-full
-            ${
-              isActive
-                ? "text-emerald-500 dark:text-emerald-500 active-fill"
-                : "text-gray-100 dark:text-gray-100"
-            }`
-          }
-        >
-          <span>About Us</span>
-        </NavLink>
-      </li>
+      {[
+        { to: "/", label: "Home" },
+        { to: "/dashboard", label: "Dashboard" },
+        { to: "/contactUs", label: "Contact Us" },
+        { to: "/aboutUs", label: "About Us" },
+      ].map(({ to, label }) => (
+        <li key={to} role="none" className="flex items-stretch">
+          <NavLink
+            to={to}
+            className={({ isActive }) =>
+              `liquid-link flex items-center gap-2 py-2 px-4 rounded-full
+              ${
+                isActive
+                  ? "dark:text-emerald-300 active-fill"
+                  : "text-white dark:text-gray-100"
+              }`
+            }
+          >
+            <span>{label}</span>
+          </NavLink>
+        </li>
+      ))}
     </ul>
   );
 };
