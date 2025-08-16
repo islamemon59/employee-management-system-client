@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { MdEmail, MdMessage, MdLocationOn } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useTitle from "../../Hooks/useTitle";
 
@@ -23,20 +25,42 @@ const ContactUs = () => {
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.8, staggerChildren: 0.2 } 
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
+
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10 space-y-8">
+    <motion.div
+      className="max-w-3xl mx-auto px-4 py-10 space-y-8"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       {/* Heading */}
-      <div className="text-center">
+      <motion.div className="text-center" variants={itemVariants}>
         <h2 className="text-3xl md:text-4xl font-bold text-emerald-600 dark:text-emerald-400">
           Contact Us
         </h2>
         <p className="mt-2 text-gray-700 dark:text-gray-400">
           We'd love to hear your ideas, suggestions, or any feedback!
         </p>
-      </div>
+      </motion.div>
 
       {/* Address & Contact Info */}
-      <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow text-center space-y-2">
+      <motion.div
+        className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow text-center space-y-2"
+        variants={itemVariants}
+      >
         <div className="flex items-center justify-center gap-2 text-gray-700 dark:text-gray-300">
           <MdLocationOn className="text-emerald-500 text-xl" />
           <span>1234 Innovation Avenue, Dhaka, Bangladesh</span>
@@ -49,14 +73,15 @@ const ContactUs = () => {
           <FaPhoneAlt className="text-emerald-500 text-sm" />
           <span>+880 1234 567890</span>
         </div>
-      </div>
+      </motion.div>
 
       {/* Contact Form */}
-      <form
+      <motion.form
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-4 bg-white dark:bg-gray-900 p-6 rounded-lg shadow"
+        variants={itemVariants}
       >
-        <div>
+        <motion.div variants={itemVariants}>
           <label className="block mb-1 text-gray-600 dark:text-gray-300">
             Your Email
           </label>
@@ -69,9 +94,9 @@ const ContactUs = () => {
               className="w-full px-3 py-2 bg-transparent text-gray-800 dark:text-gray-200 focus:outline-none focus:border-emerald-500 rounded-r"
             />
           </div>
-        </div>
+        </motion.div>
 
-        <div>
+        <motion.div variants={itemVariants}>
           <label className="block mb-1 text-gray-600 dark:text-gray-300">
             Your Message
           </label>
@@ -84,16 +109,19 @@ const ContactUs = () => {
               className="w-full px-3 py-2 bg-transparent text-gray-800 dark:text-gray-200 focus:outline-none focus:border-emerald-500 rounded-r"
             ></textarea>
           </div>
-        </div>
+        </motion.div>
 
-        <button
+        <motion.button
           type="submit"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-6 py-2 rounded transition"
+          variants={itemVariants}
         >
           Send Message
-        </button>
-      </form>
-    </div>
+        </motion.button>
+      </motion.form>
+    </motion.div>
   );
 };
 

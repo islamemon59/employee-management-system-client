@@ -25,6 +25,7 @@ const NavbarLinks = ({ isToggleOpen }) => {
         <li key={to} role="none" className="flex items-stretch">
           <NavLink
             to={to}
+            onClick={() => scrollTo(0)}
             className={({ isActive }) =>
               `liquid-link flex items-center gap-2 py-2 px-4 rounded-full
               ${

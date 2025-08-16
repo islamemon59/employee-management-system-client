@@ -1,9 +1,7 @@
 import React from "react";
-
-// This component displays a list of blog posts in a clean, grid-based layout.
-// It uses placeholder data for demonstration purposes.
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 const Blog = () => {
-  // Placeholder data for blog posts. In a real application, you would fetch this data from an API.
   const articles = [
     {
       id: 1,
@@ -12,7 +10,8 @@ const Blog = () => {
         "An exploration into how artificial intelligence is transforming art, music, and design...",
       author: "Alex Johnson",
       date: "September 1, 2025",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEToqPaNvgCSirb63LSOYMpMIW1MtLT1GUuw&s",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEToqPaNvgCSirb63LSOYMpMIW1MtLT1GUuw&s",
       authorImage:
         "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8MnwwfHx8Mg%3D%3D",
     },
@@ -59,7 +58,8 @@ const Blog = () => {
         "How IoT and advanced data analytics are shaping the urban landscapes of tomorrow...",
       author: "Robert Evans",
       date: "August 10, 2025",
-      image: "https://www.datasciencecentral.com/wp-content/uploads/2022/05/smart-city-1-1024x683.jpg",
+      image:
+        "https://www.datasciencecentral.com/wp-content/uploads/2022/05/smart-city-1-1024x683.jpg",
       authorImage:
         "https://images.unsplash.com/photo-1623184663110-89ba5b565eb6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8",
     },
@@ -70,27 +70,47 @@ const Blog = () => {
         "Understanding the art and science of typefaces to create beautiful, readable designs...",
       author: "Sarah Brown",
       date: "August 5, 2025",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ3KoRMOio6jRbCd98P2WQQu0XZZ8ehz6MKw&s",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ3KoRMOio6jRbCd98P2WQQu0XZZ8ehz6MKw&s",
       authorImage:
         "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEzfHx8ZW58MHx8fHx8",
     },
   ];
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" },
+    }),
+  };
+
   return (
     <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center">
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <h1 className="text-4xl font-extrabold tracking-tight text-emerald-600 dark:text-white sm:text-5xl">
             Latest Articles
           </h1>
           <p className="mt-4 text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
             Stay up-to-date with our insights on technology, design, and more.
           </p>
-        </div>
+        </motion.div>
         <div className="mt-16 grid gap-10 lg:grid-cols-3 sm:grid-cols-2">
-          {articles.map((article) => (
-            <div
+          {articles.map((article, index) => (
+            <motion.div
               key={article.id}
+              custom={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={cardVariants}
               className="group flex flex-col rounded-xl shadow-lg overflow-hidden bg-white dark:bg-gray-900 transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-2xl"
             >
               <div className="flex-shrink-0">
@@ -134,7 +154,7 @@ const Blog = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
