@@ -21,6 +21,7 @@ import EmployeeRoute from "../Private/EmployeeRoute";
 import HrRoute from "../Private/HrRoute";
 import AdminRoute from "../Private/AdminRoute";
 import AboutUs from "../Pages/AboutUs/AboutUs";
+import Blog from "../Pages/Blog/Blog";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
       {
         path: "aboutUs",
         Component: AboutUs,
+      },
+      {
+        path: "blog",
+        Component: Blog,
       },
     ],
   },

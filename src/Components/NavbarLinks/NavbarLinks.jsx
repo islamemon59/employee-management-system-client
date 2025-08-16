@@ -19,6 +19,7 @@ const NavbarLinks = ({ isToggleOpen }) => {
         { to: "/", label: "Home" },
         { to: "/dashboard", label: "Dashboard" },
         { to: "/contactUs", label: "Contact Us" },
+        { to: "/blog", label: "Blog" },
         { to: "/aboutUs", label: "About Us" },
       ].map(({ to, label }) => (
         <li key={to} role="none" className="flex items-stretch">
