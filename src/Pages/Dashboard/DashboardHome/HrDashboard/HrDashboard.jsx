@@ -165,9 +165,6 @@ const HrDashboard = () => {
             Passionate about streamlining workflows, improving team
             collaboration, and building tools that make work life easier.
           </p>
-          <button className="mt-2 inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-full transition">
-            View Profile
-          </button>
         </div>
       </motion.section>
     </div>
