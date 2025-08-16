@@ -6,6 +6,7 @@ import HomeIntroSection from "../HomeIntroSection/HomeIntroSection";
 import Team from "../Team/Team";
 import TopRatedEmployee from "../TopRatedEmployee/TopRatedEmployee";
 import useTitle from "../../../Hooks/useTitle";
+import ScrollToTop from "../../../Components/ScrollToTop/ScrollToTop";
 
 const Home = () => {
   useTitle("Home - StaffHub");
@@ -20,6 +21,7 @@ const Home = () => {
         <Services/>
         <TestimonialsSlider/>
         <Team/>
+        <ScrollToTop/>
       </div>
     </div>
   );
