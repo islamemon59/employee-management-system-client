@@ -20,6 +20,7 @@ import VisitorMessage from "../Pages/Dashboard/AdminField/VisitorMessage/Visitor
 import EmployeeRoute from "../Private/EmployeeRoute";
 import HrRoute from "../Private/HrRoute";
 import AdminRoute from "../Private/AdminRoute";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path: "contactUs",
         Component: ContactUs,
+      },
+      {
+        path: "aboutUs",
+        Component: AboutUs,
       },
     ],
   },

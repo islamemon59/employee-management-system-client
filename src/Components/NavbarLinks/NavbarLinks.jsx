@@ -43,6 +43,14 @@ const NavbarLinks = ({ isToggleOpen }) => {
           <span>Contact Us</span>
         </NavLink>
       </li>
+      <li role="none" className="flex items-stretch">
+        <NavLink
+          to="/aboutUs"
+          className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-black dark:hover:text-white lg:px-4 dark:text-gray-300"
+        >
+          <span>About Us</span>
+        </NavLink>
+      </li>
     </ul>
   );
 };
