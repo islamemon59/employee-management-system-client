@@ -4,6 +4,7 @@ import { FiArrowRight } from "react-icons/fi";
 import employee from "../../../../employee.json";
 import Lottie from "lottie-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router";
 
 const HomeIntroSection = () => {
   return (
@@ -35,15 +36,17 @@ const HomeIntroSection = () => {
           data-driven decisions effortlessly.
         </motion.p>
 
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ type: "spring", stiffness: 300 }}
-          className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white px-5 py-3 rounded-full"
-        >
-          Get Started
-          <FiArrowRight size={18} />
-        </motion.button>
+        <Link to="/contactUs" onClick={() => scrollTo(0)}>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white px-5 py-3 rounded-full"
+          >
+            Get Started
+            <FiArrowRight size={18} />
+          </motion.button>
+        </Link>
       </motion.div>
 
       {/* Right Side - Lottie Animation */}

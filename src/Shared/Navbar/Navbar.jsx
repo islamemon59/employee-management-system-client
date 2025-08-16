@@ -50,7 +50,7 @@ const Navbar = () => {
       <div className="hidden md:block border-b border-emerald-600 bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-gray-800 dark:to-gray-900">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-sm text-white">
           <a
-            href="tel:+306750009800"
+            href=""
             className="flex items-center gap-2 hover:text-emerald-200 transition-colors"
           >
             <svg

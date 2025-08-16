@@ -3,11 +3,11 @@ import React from "react";
 import topper from "../../../../topper.json";
 import Lottie from "lottie-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router";
 
 const TopRatedEmployee = () => {
   return (
     <section className="max-w-6xl mx-auto py-16 px-4 grid md:grid-cols-2 gap-10 items-center">
-      
       {/* Left side: Text */}
       <motion.div
         className="space-y-5"
@@ -24,7 +24,7 @@ const TopRatedEmployee = () => {
         >
           🌟 Employee of the Month
         </motion.h2>
-        
+
         <motion.p
           className="text-gray-600 dark:text-gray-300 leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
@@ -45,14 +45,17 @@ const TopRatedEmployee = () => {
           Recognizing talent keeps our culture strong and our people motivated.
         </motion.p>
 
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ type: "spring", stiffness: 300 }}
-          className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white px-4 py-2 rounded-full"
-        >
-          See All Stars ⭐
-        </motion.button>
+        <Link to="/blog" onClick={() => scrollTo(0)}>
+          {" "}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white px-4 py-2 rounded-full"
+          >
+            See All Stars ⭐
+          </motion.button>
+        </Link>
       </motion.div>
 
       {/* Right side: Lottie Animation */}

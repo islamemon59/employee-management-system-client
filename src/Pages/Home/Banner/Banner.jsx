@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Link } from "react-router";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay } from "swiper/modules";
@@ -20,7 +21,6 @@ const Banner = ({ slides }) => {
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <div className="h-400px md:h-[650px] py-10 flex max-w-7xl mx-auto gap-6 items-center flex-col md:flex-row-reverse">
-              
               {/* Image with overlay */}
               <motion.div
                 className="flex-1 relative overflow-hidden rounded-lg shadow-lg"
@@ -41,7 +41,12 @@ const Banner = ({ slides }) => {
                 className="p-4 flex-1 text-center md:text-left"
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ type: "spring", stiffness: 80, damping: 12, delay: 0.3 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 80,
+                  damping: 12,
+                  delay: 0.3,
+                }}
               >
                 {/* Floating title */}
                 <motion.h2
@@ -63,14 +68,16 @@ const Banner = ({ slides }) => {
                 </p>
 
                 {/* CTA button with animated hover & tap */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="mt-6 px-6 py-2 bg-emerald-500 text-white rounded-full shadow hover:bg-emerald-600"
-                >
-                  Learn More
-                </motion.button>
+                <Link to="/aboutUs" onClick={() => scrollTo(0)}>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="mt-6 px-6 py-2 bg-emerald-500 text-white rounded-full shadow hover:bg-emerald-600"
+                  >
+                    Learn More
+                  </motion.button>
+                </Link>
               </motion.div>
             </div>
           </SwiperSlide>

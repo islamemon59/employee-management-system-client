@@ -1,5 +1,6 @@
 import React from "react";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import { Link } from "react-router";
 
 const Footer = () => {
   return (
@@ -38,28 +39,36 @@ const Footer = () => {
               </h3>
               <ul className="space-y-2">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/"
                     className="hover:text-white dark:hover:text-emerald-300 transition-colors"
                   >
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="hover:text-white dark:hover:text-emerald-300 transition-colors"
-                  >
-                    Dashboard
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/contactUs"
                     className="hover:text-white dark:hover:text-emerald-300 transition-colors"
                   >
                     Contact Us
-                  </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/blog"
+                    className="hover:text-white dark:hover:text-emerald-300 transition-colors"
+                  >
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/aboutUs"
+                    className="hover:text-white dark:hover:text-emerald-300 transition-colors"
+                  >
+                    About Us
+                  </Link>
                 </li>
               </ul>
             </nav>
