@@ -75,19 +75,19 @@ const Footer = () => {
 
         <div className="flex gap-4">
           <a
-            href="#"
+            href="https://www.facebook.com/n.bi.ta.554015"
             className="hover:text-white dark:hover:text-emerald-300 transition-colors text-lg"
           >
             <FaFacebookF />
           </a>
           <a
-            href="#"
+            href="https://x.com/IstiakAhme13930"
             className="hover:text-white dark:hover:text-emerald-300 transition-colors text-lg"
           >
             <FaTwitter />
           </a>
           <a
-            href="#"
+            href="https://www.linkedin.com/in/emonislam59"
             className="hover:text-white dark:hover:text-emerald-300 transition-colors text-lg"
           >
             <FaLinkedinIn />
