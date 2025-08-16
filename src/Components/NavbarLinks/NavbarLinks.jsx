@@ -1,5 +1,6 @@
+// src/components/NavbarLinks.jsx
 import React from "react";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router"; // Ensure this is from react-router-dom
 
 const NavbarLinks = ({ isToggleOpen }) => {
   return (
@@ -21,8 +22,14 @@ const NavbarLinks = ({ isToggleOpen }) => {
       <li role="none" className="flex items-stretch">
         <NavLink
           to="/"
-          className={`flex items-center gap-2 py-4 transition-colors duration-300
-            hover:text-black dark:hover:text-white lg:px-4 dark:text-gray-300`}
+          className={({ isActive }) =>
+            `liquid-link flex items-center gap-2 py-2 px-2 lg:px-4 rounded-full
+            ${
+              isActive
+                ? "text-emerald-500 dark:text-emerald-500 active-fill"
+                : "text-gray-100 dark:text-gray-100"
+            }`
+          }
         >
           <span>Home</span>
         </NavLink>
@@ -30,7 +37,14 @@ const NavbarLinks = ({ isToggleOpen }) => {
       <li role="none" className="flex items-stretch">
         <NavLink
           to="/dashboard"
-          className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-black dark:hover:text-white lg:px-4 dark:text-gray-300"
+          className={({ isActive }) =>
+            `liquid-link flex items-center gap-2 py-2 px-2 lg:px-4 rounded-full
+            ${
+              isActive
+                ? "text-emerald-500 dark:text-emerald-500 active-fill"
+                : "text-gray-100 dark:text-gray-100"
+            }`
+          }
         >
           <span>Dashboard</span>
         </NavLink>
@@ -38,7 +52,14 @@ const NavbarLinks = ({ isToggleOpen }) => {
       <li role="none" className="flex items-stretch">
         <NavLink
           to="/contactUs"
-          className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-black dark:hover:text-white lg:px-4 dark:text-gray-300"
+          className={({ isActive }) =>
+            `liquid-link flex items-center gap-2 py-2 px-2 lg:px-4 rounded-full
+            ${
+              isActive
+                ? "text-emerald-500 dark:text-emerald-500 active-fill"
+                : "text-gray-100 dark:text-gray-100"
+            }`
+          }
         >
           <span>Contact Us</span>
         </NavLink>
@@ -46,7 +67,14 @@ const NavbarLinks = ({ isToggleOpen }) => {
       <li role="none" className="flex items-stretch">
         <NavLink
           to="/aboutUs"
-          className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-black dark:hover:text-white lg:px-4 dark:text-gray-300"
+          className={({ isActive }) =>
+            `liquid-link flex items-center gap-2 py-2 px-2 lg:px-4 rounded-full
+            ${
+              isActive
+                ? "text-emerald-500 dark:text-emerald-500 active-fill"
+                : "text-gray-100 dark:text-gray-100"
+            }`
+          }
         >
           <span>About Us</span>
         </NavLink>

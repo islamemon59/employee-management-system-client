@@ -39,3 +39,51 @@
   font-weight: 500;
   font-style: normal;
 }
+
+
+/*
+ * --------------------------------------------
+ * Modern Liquid Active Link Animation
+ * --------------------------------------------
+ */
+.liquid-link {
+  position: relative;
+  /* Required for the pseudo-element */
+  overflow: hidden;
+  /* Hides the overflowing parts of the pseudo-element */
+  z-index: 1;
+  /* Ensures the text is on top of the pseudo-element */
+  transition: color 0.4s ease-in-out;
+  /* Smooth color transition for text */
+}
+
+/* Pseudo-element for the liquid background */
+.liquid-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: #ffffff;
+  /* The color of the liquid fill */
+  transition: height 0.4s ease-in-out;
+  /* The height transition creates the "fill" effect */
+  z-index: -1;
+  /* Places the fill behind the text */
+}
+
+/* Active state for the liquid fill */
+.liquid-link.active-fill::before {
+  height: 100%;
+}
+
+/*
+ * --------------------------------------------
+ * Dark Mode Specific Styles
+ * --------------------------------------------
+ */
+.dark .liquid-link::before {
+  background-color: #1a202c;
+  /* A dark color for the fill in dark mode */
+}
